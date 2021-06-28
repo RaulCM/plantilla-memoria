@@ -30,6 +30,7 @@
 \usepackage{float}  %% H para posicionar figuras
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
+\usepackage{hyperref}
 
 \title{Memoria del Proyecto}
 \author{Raúl Cano Montero}
@@ -89,7 +90,7 @@ Tutor : Dr. Gregorio Robles
 \vspace{-4cm}
 \begin{center}
 \LARGE
-\textbf{Trabajo Fin de Grado/Máster}
+\textbf{Trabajo Fin de Grado}
 
 \vspace{1cm}
 \large
@@ -154,7 +155,7 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 \chapter*{Resumen}
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
-
+%TODO
 Aquí viene un resumen del proyecto.
 Ha de constar de tres o cuatro párrafos, donde se presente de manera clara y concisa de qué va el proyecto. 
 Han de quedar respondidas las siguientes preguntas:
@@ -173,7 +174,7 @@ Lo mejor es escribir el resumen al final.
 \chapter*{Summary}
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
 \markboth{SUMMARY}{SUMMARY} % encabezado
-
+%TODO
 Here comes a translation of the ``Resumen'' into English. 
 Please, double check it for correct grammar and spelling.
 As it is the translation of the ``Resumen'', which is supposed to be written at the end, this as well should be filled out just before submitting.
@@ -329,7 +330,7 @@ Para poder cumplir con el objetivo general se han tenido en cuenta los siguiente
 
 \begin{itemize}
 	\item \textbf{Trabajar con proyectos reales.} Utilizar la aplicación para analizar y corregir proyectos reales.
-	\item \textbf{Aplicación web.} Desarrollar como una aplicación web para hacer más sencillo y amigable su uso.
+	\item \textbf{Aplicación web.} Desarrollar como una aplicación web para hacer mejor y más sencilla la experiencia de usuario.
 	\item \textbf{Accesibilidad desde internet.} Hacer que la aplicación esté en funcionamiento continuamente y sea accesible desde cualquier ubicación.
 	\item \textbf{Compatibilidad con el servidor GitLab de la ETSIT.} Hacer que la aplicación sea compatible con el GitLab de la ETSIT para permitir que los alumnos de la escuela puedan analizar y corregir sus proyectos.
 	\item \textbf{Análisis de aceptación de las Pull-Requests.} Evaluar la aceptación de los cambios realizados en los proyectos mediante el análisis del estado de las Pull-Requests realizadas.
@@ -352,6 +353,81 @@ Lo importante es que quede claro cuánto tiempo llevas (tiempo natural, p.ej., 6
 \cleardoublepage
 \chapter{Estado del arte}
 \label{chap:estado}
+
+\section{Python} 
+\label{sec:python}
+Python\footnote{\url{https://www.python.org/}} es un lenguaje de programación Open Source escrito por Guido van Rossum entre finales de los años 80 y principio de los 90. El objetivo de la creación de Python era tener un lenguaje de programación con una sintaxis sencilla, como ABC, añadiendo la posibilidad de realizar llamadas al sistema con compatibilidad con distintos sistemas operativos.\cite{python}
+
+Es un lenguaje de programación interpretado, interactivo y orientado a objetos. Al ser un lenguaje interpretado se reduce el tiempo entre la escritura del código y la ejecución del mismo, ya que no hay que compilarlo cada vez que se realice una modificación del código. Sin embargo, ésto implica que sea necesaria la instalación de un intérprete en la máquina que va a ejecutar el código y aumenta el tiempo de la ejecución respecto a los lenguajes compilados.
+
+Python incorpora módulos, excepciones, tipado dinámico, tipos de datos dinámicos de muy alto nivel y clases. La librería estándar de Python le permite cubrir distintas áreas, como el procesamiento de cadenas de texto, protocolos de red, ingeniería del software e interacción con el sistema operativo.
+
+Además de la programación orientada a objetos, soporta múltiples paradigmas de programación como la programación procedimental y la programación funcional y también es compatible con diversos sistemas operativos, incluyendo Windows y múltiples variantes de Unix, como Linux y macOS.
+
+Actualmente Python es uno de los lenguajes de programación más utilizados.\cite{stackoverflowsurvey}
+
+\section{PEP 8} 
+\label{sec:pep8}
+Python Enhancement Proposal 8, más conocida como PEP 8\footnote{\url{https://www.python.org/dev/peps/pep-0008/}}, es una guía de estilo para código escrito en Python que contiene recomendaciones y convenciones dirigidas a mejorar la consistencia y legibilidad del código.
+Algunas de las convenciones indicadas por PEP 8 son las siguientes:
+\begin{itemize}
+	\item \textbf{Tabulación}: Se debe tabular utilizando 4 espacios por cada nivel de tabulación.
+	\item \textbf{Caracteres por línea}: Cada línea de código debe tener, como máximo, una longitud de 79 caracteres.
+	\item \textbf{Imports}: Los módulos adicionales deben ser importados al inicio de cada fichero y sólo debe haber uno por línea.
+	\item \textbf{Espacios antes y después de operadores}: Antes y después de cada operador debe haber un único espacio.
+	\item \textbf{Nomenclatura}: Cada elemento tiene definidas unas normas distintas al realizar su declaración.
+\end{itemize}
+
+PEP 8 también nos indica que las distintas normas pueden ser ignoradas en determinados casos como, por ejemplo:
+\begin{itemize}
+	\item Cuando se añade código a una librería ya existente que sigue un estilo distinto se debe respetar dicho estilo para mantener la consistencia dentro de dicha librería.
+	\item En caso de que el código necesite funcionar en versiones antiguas de Python y modificarlo suponga una incompatibilidad.
+	\item Cuando modificar el código dificulte la lectura y comprensión del mismo. 
+\end{itemize}
+\section{Pylint} 
+\label{sec:pylint}
+Pylint
+\section{Django} 
+\label{sec:django}
+
+\section{PostgreSQL} 
+\label{sec:postgresql}
+
+\section{HTML} 
+\label{sec:html}
+
+\section{CSS} 
+\label{sec:css}
+
+\section{Bootstrap} 
+\label{sec:bootstrap}
+
+\section{JavaScript} 
+\label{sec:javascript}
+
+\section{jQuery} 
+\label{sec:jquery}
+
+\section{Chart.js} 
+\label{sec:chartjs}
+
+\section{JSON} 
+\label{sec:json}
+
+\section{API-REST} 
+\label{sec:api}
+
+\section{Git} 
+\label{sec:git}
+
+\section{GitHub} 
+\label{sec:github}
+
+\section{GitLab} 
+\label{sec:gitlab}
+
+\section{Heroku} 
+\label{sec:Heroku}
 
 Descripción de las tecnologías que utilizas en tu trabajo. 
 Con dos o tres párrafos por cada tecnología, vale. 
