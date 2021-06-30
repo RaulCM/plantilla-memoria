@@ -384,50 +384,91 @@ PEP 8 también nos indica que las distintas normas pueden ser ignoradas en deter
 	\item En caso de que el código necesite funcionar en versiones antiguas de Python y modificarlo suponga una incompatibilidad.
 	\item Cuando modificar el código dificulte la lectura y comprensión del mismo. 
 \end{itemize}
+
 \section{Pylint} 
 \label{sec:pylint}
-Pylint
+Pylint\footnote{\url{https://www.pylint.org/}} es una herramienta de análisis de código escrito en Python que comprueba si hay incumplimiento de la guía de estilo PEP 8. Es un analizador de código estático, lo que facilita el análisis del código ya que se realiza sin tener que ejecutarlo.
+
+La salida de Pylint muestra para cada error detectado en qué fichero, línea y columna se ha encontrado y, al final de la salida, una calificación del código analizado en función de los errores que se han detectado. El formato de esta salida y las opciones del análisis, como los errores que deben buscarse o los ficheros que deben analizarse, son configurables mediante argumentos introducidos al ejecutar la herramienta o mediante un fichero de configuración llamado pylintrc.
+
 \section{Django} 
 \label{sec:django}
+Django\footnote{\url{https://www.djangoproject.com/}} es un framework de desarrollo de aplicaciones web de código abierto escrito en Python. Django está basado en una variación de la arquitectura MVC (Model-View-Controller) a la que denominan MVT (Model-View-Template):
+\begin{itemize}
+	\item \textbf{Model}: Datos con los que el sistema trabaja. Se definen en el fichero models.py.
+	\item \textbf{View}: Describe qué datos se presentan mediante los ficheros views.py y urls.py. 
+	\item \textbf{Template}: Definido por las plantillas HTML y CSS que describen cómo se presentan los datos. .
+\end{itemize}
 
 \section{PostgreSQL} 
 \label{sec:postgresql}
 
+PostgreSQL\footnote{\url{https://www.postgresql.org/}} es un sistema de gestión de bases de datos relacionales de código abierto basado en POSTGRES. PostgreSQL es compatible con gran parte del estándar SQL, añade algunas características propias, como el control de concurrencias multiversión o la compatibilidad con consultas complejas, y permite al usuario añadir nuevos tipos de datos, funciones u operadores.
+
 \section{HTML} 
 \label{sec:html}
+
+HTML\footnote{\url{https://www.w3.org/standards/webdesign/htmlcss}} (Hypertext Markup Language) es el lenguaje de marcado estándar para la creación de páginas web. Este estándar está a cargo del World Wide Web Consortium (W3C) y es compatible con todos los navegadores web.
+Con HTML se define la estructura de las páginas web mediante la utilización de distintas etiquetas.
 
 \section{CSS} 
 \label{sec:css}
 
+CSS\footnote{\url{https://www.w3.org/standards/webdesign/htmlcss}} (Cascading Style Sheets) es un lenguaje de diseño web utilizado para definir la apariencia y el estilo visual de una página web. Al igual que HTML, es un estándar a cargo del World Wide Web Consortium (W3C).
+CSS establece cómo se muestran los elementos declarados en un documento HTML definiendo propiedades como los colores, fuentes y diseño. Para ello CSS hace uso de reglas, formadas por selectores, que indican sobre qué elementos HTML se aplican, y declaraciones, que definen y modifican las propiedades.
+También permite adaptar la presentación de dichos elementos a diferentes tipos de dipositivos para mostrar correctamente los elementos para cualquier tamaño de pantalla.
+CSS es independiente de HTML y se puede llevar a cabo desde un fichero separado, lo que facilita el mantenimiento y la reutilización de las hojas de estilo.
+
+
 \section{Bootstrap} 
 \label{sec:bootstrap}
+
+Bootstrap\footnote{\url{}}
 
 \section{JavaScript} 
 \label{sec:javascript}
 
+JavaScript\footnote{\url{}}
+
 \section{jQuery} 
 \label{sec:jquery}
+
+jQuery\footnote{\url{}}
 
 \section{Chart.js} 
 \label{sec:chartjs}
 
+Chart.js\footnote{\url{}}
+
 \section{JSON} 
 \label{sec:json}
+
+JSON\footnote{\url{}}
 
 \section{API-REST} 
 \label{sec:api}
 
+API-REST\footnote{\url{}}
+
 \section{Git} 
 \label{sec:git}
+
+Git\footnote{\url{}}
 
 \section{GitHub} 
 \label{sec:github}
 
+GitHub\footnote{\url{}}
+
 \section{GitLab} 
 \label{sec:gitlab}
 
+GitLab\footnote{\url{}}
+
 \section{Heroku} 
 \label{sec:Heroku}
+
+Heroku\footnote{\url{}}
 
 Descripción de las tecnologías que utilizas en tu trabajo. 
 Con dos o tres párrafos por cada tecnología, vale. 
@@ -470,9 +511,6 @@ Compila el fichero \texttt{memoria.tex} (\texttt{pdflatex memoria.tex}), añade 
 También existe la posibilidad de poner notas al pie de página, por ejemplo, una para indicarte que visite la página del GSyC\footnote{\url{http://gsyc.es}}.
 
 
-
-\section{Sección 1} 
-\label{sec:seccion1}
 
 Hemos hablado de cómo incluir figuras.
 Pero no hemos dicho nada de tablas.
