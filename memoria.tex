@@ -354,6 +354,8 @@ Lo importante es que quede claro cuánto tiempo llevas (tiempo natural, p.ej., 6
 \chapter{Estado del arte}
 \label{chap:estado}
 
+En este capítulo se describen brevemente las principales tecnologías utilizadas en el desarrollo del proyecto.
+
 \section{Python} 
 \label{sec:python}
 Python \cite{python} es un lenguaje de programación Open Source escrito por Guido van Rossum entre finales de los años 80 y principio de los 90. El objetivo de la creación de Python era tener un lenguaje de programación con una sintaxis sencilla, como ABC, añadiendo la posibilidad de realizar llamadas al sistema con compatibilidad con distintos sistemas operativos.
@@ -463,7 +465,6 @@ Para un proyecto almacenado en un repositorio, Git permite que cada integrante d
 
 El funcionamiento de Git se basa en la creación, uso y mezcla de ramas dentro del proyecto, existiendo una rama principal, conocida como master, y creándose ramas secundarias para realizar las modificaciones en el código. Una vez se realicen las modificaciones, la rama secundaria se mezcla con la rama master y cuando otros miembros del equipo actualicen su rama master descargarán los cambios realizados sin que esto afecte a su trabajo.
 
-
 \section{GitHub} 
 \label{sec:github}
 
@@ -480,7 +481,7 @@ GitLab permite la instalación en un servidor privado para no hacer uso de la pl
 \section{Heroku} 
 \label{sec:Heroku}
 
-Heroku\cite{heroku} Heroku es una plataforma como servicio (PaaS) que permite alojar aplicaciones en la nube. Es compatible con aplicaciones desarrolladas en Node.js, Ruby, Python, Java, PHP, Go, Scala y Clojure y con bases de datos PostgreSQL, MongoDB y Redis.
+Heroku\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar aplicaciones en la nube. Es compatible con aplicaciones desarrolladas en Node.js, Ruby, Python, Java, PHP, Go, Scala y Clojure y con bases de datos PostgreSQL, MongoDB y Redis.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -490,13 +491,35 @@ Heroku\cite{heroku} Heroku es una plataforma como servicio (PaaS) que permite al
 \cleardoublepage
 \chapter{Diseño e implementación}
 
-Aquí viene todo lo que has hecho tú (tecnológicamente). 
-Puedes entrar hasta el detalle. 
-Es la parte más importante de la memoria, porque describe lo que has hecho tú.
-Eso sí, normalmente aconsejo no poner código, sino diagramas.
+En este capítulo se describe de manera detallada el diseño y la implementación del proyecto.
 
 \section{Arquitectura general} 
 \label{sec:arquitectura}
+
+La arquitectura de la aplicación se basa en el modelo cliente-servidor representado en la figura~\ref{fig:cliente-servidor}.
+En este modelo existen dos partes diferenciadas: cliente y servidor.
+
+Cliente y servidor puede encontrarse en la misma máquina, pero en el caso de este proyecto siempre van a estar en máquinas separadas, ya que la aplicación se encuentra desplegada en Heroku y la comunicación entre ambas partes se lleva a cabo a través de internet.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=9cm, keepaspectratio]{img/cliente-servidor.png}
+  \caption{Modelo cliente-servidor.}\label{fig:cliente-servidor}
+\end{figure}
+
+\subsection{Cliente}
+\label{subsec:arq_cliente}
+
+La parte cliente está formada por el navegador web desde el que el usuario accede a la aplicación. 
+El navegador recibe la página web en forma de código HTML y lo interpreta para mostrarlo al usuario para su interacción.
+Las acciones que el usuario lleve a cabo sobre la página web son convertidas en peticiones HTTP por el navegador web y se envían al servidor, que las procesa y devuelve una respuesta al cliente en forma de código HTML.
+Desde la parte cliente no se realiza ninguna ejecución a excepción de los scripts JavaScript que puedan encontrarse dentro del HTML.
+
+\subsection{Servidor}
+\label{subsec:arq_servidor}
+
+\section{Sección 1} 
+\label{sec:seccion1}
 
 Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
 
