@@ -31,6 +31,7 @@
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage{hyperref}
+\usepackage{dirtree}
 
 \title{Memoria del Proyecto}
 \author{Raúl Cano Montero}
@@ -526,8 +527,41 @@ Por último, el servidor devuelve al cliente el código HTTP con la respuesta a 
 \begin{figure}[h]
   \centering
   \includegraphics[width=9cm, keepaspectratio]{img/servidor.png}
-  \caption{Modelo cliente-servidor.}\label{fig:servidor}
+  \caption{Arquitectura del servidor.}\label{fig:servidor}
 \end{figure}
+
+\section{Diseño e implementación del servidor} 
+\label{sec:diseno_servidor}
+
+\subsection{Django}
+\label{subsec:diseño_django}
+
+Como ya se ha explicado en la sección~\ref{sec:django}, Django se basa en una arquitectura MVT como la representada en la figura~\ref{fig:django}.
+
+En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros que componen la parte Django de la aplicación. Los ficheros y directorios más importantes y sus funciones son los siguientes:
+
+\begin{itemize}
+	\item \textbf{models.py}:  Define el modelo de datos a utilizar en la base de datos de la aplicación. Dentro de la arquitectura MVT de Django, pertenece a \textit{Model}.
+	\item \textbf{views.py}: En él se definen las vistas encargadas de leer y procesar el contenido de las peticiones HTTP realizadas a la aplicación para después realizar las acciones correspondientes.
+	Como su propio nombre indica, se encuentra dentro de la parte \textit{Views} definida en el modelo de arquitectura MVT.
+	\item \textbf{urls.py}: A través de este fichero se gestiona el acceso a los recursos (URLs) de la aplicación.
+	En él se indican, mediante el uso de expresiones regulares, los recursos que son accesibles en la aplicación y se asigna a cada uno una función definida en el fichero views.py. Junto a views.py, pertenece a la parte \textit{Views} definida en el modelo de arquitectura MVT.
+	\item \textbf{pylint\_errors.py}: Fichero que contiene las funciones encargadas de corregir los errores analizados por Pylint.
+	\item \textbf{template}: Directorio que contiene las plantillas HTML que van a formar el cuerpo de la respuesta HTTP que se da al cliente. En su interior se encuentran los directorios \textit{es}, que contiene las plantillas en castellano, \textit{en}, que contienen las plantillas en inglés e \textit{images}, que contiene las imágenes utilizadas por las plantillas HTML. Tambien se encuentra el fichero \textit{themes.css}, que actúa como hoja de estilo para toda la aplicación. Los ficheros y directorios de su interior confirman la parte \textit{Templates} del modelo de arquitectura MVT.
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/django.png}
+  \caption{Arquitectura Django.}\label{fig:django}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[height=8cm, keepaspectratio]{img/directorios.png}
+  \caption{Árbol de ficheros de Django.}\label{fig:directorios}
+\end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
