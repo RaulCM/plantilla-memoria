@@ -499,7 +499,7 @@ En este capítulo se describe de manera detallada el diseño y la implementació
 La arquitectura de la aplicación se basa en el modelo cliente-servidor representado en la figura~\ref{fig:cliente-servidor}.
 En este modelo existen dos partes diferenciadas: cliente y servidor.
 
-Cliente y servidor puede encontrarse en la misma máquina, pero en el caso de este proyecto siempre van a estar en máquinas separadas, ya que la aplicación se encuentra desplegada en Heroku y la comunicación entre ambas partes se lleva a cabo a través de internet.
+Cliente y servidor puede encontrarse en la misma máquina, pero en el caso de este proyecto siempre van a estar en máquinas separadas, ya que la aplicación se encuentra desplegada en Heroku y la comunicación entre ambas partes se lleva a cabo a través de internet mediante protocolo HTTP.
 
 \begin{figure}
   \centering
@@ -518,36 +518,16 @@ Desde la parte cliente no se realiza ninguna ejecución a excepción de los scri
 \subsection{Servidor}
 \label{subsec:arq_servidor}
 
-\section{Sección 1} 
-\label{sec:seccion1}
+La parte servidor está desplegada en Heroku y contiene la aplicación desarrollada en Django y una base de datos PostgreSQL tal y como se ve reflejado en la figura~\ref{fig:servidor}.
 
-Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
-
-Por ejemplo, puedes verlo en la figura~\ref{fig:arquitectura}.
-\LaTeX \ pone las figuras donde mejor cuadran. 
-Y eso quiere decir que quizás no lo haga donde lo hemos puesto\ldots
-Eso no es malo.
-A veces queda un poco raro, pero es la filosofía de \LaTeX: tú al contenido, que yo me encargo de la maquetación.
-
-\begin{figure}
+El servidor desplegado en Heroku recibe las peticiones HTTP realizadas sobre una determinada URL y Django las procesa realizando las acciones correspondientes para la petición recibida y, si es necesario, realiza una consulta a la base de datos PostgreSQL pudiendo ser ésta para obtener o modificar datos almacenados en dicha base de datos.
+Por último, el servidor devuelve al cliente el código HTTP con la respuesta a la petición realizada.
+\newline
+\begin{figure}[h]
   \centering
-  \includegraphics[width=9cm, keepaspectratio]{img/arquitectura.png}
-  \caption{Estructura del parser básico.}\label{fig:arquitectura}
+  \includegraphics[width=9cm, keepaspectratio]{img/servidor.png}
+  \caption{Modelo cliente-servidor.}\label{fig:servidor}
 \end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[bb=0 0 800 600, width=12cm, keepaspectratio]{img/foro1}
-    \caption{Página con enlaces a hilos}\label{fig:_arquitectura}
-\end{figure}
-
- 
-Recuerda que toda figura que añadas a tu memoria debe ser explicada.
-Sí, aunque te parezca evidente lo que se ve en la figura~\ref{fig:arquitectura}, la figura en sí solamente es un apoyo a tu texto.
-Así que explica lo que se ve en la figura, haciendo referencia a la misma tal y como ves aquí.
-Por ejemplo: En la figura~\ref{fig:arquitectura} se puede ver que la estructura del \emph{parser} básico, que consta de seis componentes diferentes: los datos se obtienen de la red, y según el tipo de dato, se pasará a un \emph{parser} específico y bla, bla, bla\ldots
-
-Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
