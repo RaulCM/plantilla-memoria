@@ -538,6 +538,15 @@ Por último, el servidor devuelve al cliente el código HTTP con la respuesta a 
 
 Como ya se ha explicado en la sección~\ref{sec:django}, Django se basa en una arquitectura MVT como la representada en la figura~\ref{fig:django}.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/django.png}
+  \caption{Arquitectura Django.}\label{fig:django}
+\end{figure}
+
+\subsubsection{Directorios y ficheros}
+\label{subsubsec:django_directorios}
+
 En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros que componen la parte Django de la aplicación. Los ficheros y directorios más importantes y sus funciones son los siguientes:
 
 \begin{itemize}
@@ -547,14 +556,9 @@ En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros
 	\item \textbf{urls.py}: A través de este fichero se gestiona el acceso a los recursos (URLs) de la aplicación.
 	En él se indican, mediante el uso de expresiones regulares, los recursos que son accesibles en la aplicación y se asigna a cada uno una función definida en el fichero views.py. Junto a views.py, pertenece a la parte \textit{Views} definida en el modelo de arquitectura MVT.
 	\item \textbf{pylint\_errors.py}: Fichero que contiene las funciones encargadas de corregir los errores analizados por Pylint.
+	\item \textbf{tests.py}: Fichero que contiene los tests unitarios desarrollados para comprobar que las funciones de la aplicación se comportan correctamente.
 	\item \textbf{template}: Directorio que contiene las plantillas HTML que van a formar el cuerpo de la respuesta HTTP que se da al cliente. En su interior se encuentran los directorios \textit{es}, que contiene las plantillas en castellano, \textit{en}, que contienen las plantillas en inglés e \textit{images}, que contiene las imágenes utilizadas por las plantillas HTML. Tambien se encuentra el fichero \textit{themes.css}, que actúa como hoja de estilo para toda la aplicación. Los ficheros y directorios de su interior confirman la parte \textit{Templates} del modelo de arquitectura MVT.
 \end{itemize}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=12cm, keepaspectratio]{img/django.png}
-  \caption{Arquitectura Django.}\label{fig:django}
-\end{figure}
 
 \begin{figure}
   \centering
@@ -562,14 +566,46 @@ En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros
   \caption{Directorios y ficheros de Django.}\label{fig:directorios}
 \end{figure}
 
+\subsubsection{Recursos}
+\label{subsubsec:django_recursos}
+Los recursos accesibles definidos en \textit{urls.py} son los siguientes:
+\begin{itemize}
+	\item \textbf{/}: Recurso que devuelve la página principal de la aplicación.
+	Llama a la vista \textit{views.main}.
+	\item \textbf{/repo/id}: Muestra la información correspondiente al repositorio del id indicado y permite llevar a cabo el análisis del mismo y la corrección de los errores detectados.
+	Llama a la vista \textit{views.repo}.
+	\item \textbf{/list}: Devuelve una tabla con la información de todas las Pull-Requests/Merge-Requests que se han llevado a cabo y permite filtrar por el estado de las mismas (abierta, cerrada o aceptada).
+	Llama a la vista \textit{views.list}.
+	\item \textbf{/error-list}: Muestra dos gráficas, una con el recuento del número de veces que se ha corregido cada error y otra con el estado actual de las Pull-Requests/Merge-Requests realizadas.
+	Llama a la vista \textit{views.error\_list}.
+	\item \textbf{/guide}: Contiene un resumen sobre la aplicación, una breve guía de uso definiendo cada una de las páginas y una tabla con los errores detectados por Pylint que son corregibles por la aplicación. 
+	Llama a la vista \textit{views.guide}.
+	\item \textbf{/contact}: Muestra los datos de contacto para informar de algún posible problema en la aplicación.
+	Llama a la vista \textit{views.contact}.
+	\item \textbf{/es}: Cambia el idioma del usuario a castellano.
+	Llama a la vista \textit{views.es}.
+	\item \textbf{/en}: Cambia el idioma del usuario a inglés.
+	Llama a la vista \textit{views.en}.
+\end{itemize}
+
+\subsubsection{Vistas}
+\label{subsubsec:django_vistas}
+
 \subsection{Base de datos}
 \label{subsec:diseño_bbdd}
 
+La estructura de la base de datos queda definida en el fichero \textit{models.py} de Django y tiene la forma representada en la figura~\ref{fig:models}.
+Está compuesta por las siguientes tablas:
+\begin{itemize}
+	\item \textbf{Errors}: Contiene la información relativa a todos los errores detectables por Pylint y si son corregibles o no por la aplicación.
+	\item \textbf{Repository}: Almacena la información de todos los repositorios que han sido analizados por la aplicación y las Pull-Requests/Merge-Requests que se han llevado a cabo.
+	\item \textbf{All\_errors\_repo}: Guarda los errores que se han detectado en cada repositorio.
+	\item \textbf{Fixed\_errors\_repo}: Guarda los errores que se han detectado en cada repositorio y además han sido corregidos por la aplicación.
+	\item \textbf{All\_errors\_count}:  Almacena el número de veces que se ha detectado cada error.
+	\item \textbf{Fixed\_errors\_count}: Almacena el número de veces que se ha corregido cada error.
+\end{itemize}
 
-
-
-
-
+Es una base de datos PostgreSQL provisionada por Heroku y externa a la aplicación Django.
 
 \begin{figure}
   \centering
@@ -577,14 +613,21 @@ En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros
   \caption{Modelo de datos.}\label{fig:models}
 \end{figure}
 
- Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
+\subsection{Despliegue}
+\label{subsec:diseño_despliegue}
+
+
+\subsubsection{Github}
+\label{subsubsec:despliegue_github}
+
+
+\subsubsection{Heroku}
+\label{subsubsec:despliegue_heroku}
+Para llevar a cabo el despliegue de la aplicación en Heroku es necesaria la configuración de dos ficheros
 
 
 
 
-
-\subsection{Recursos}
-\label{subsec:diseño_recursos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
