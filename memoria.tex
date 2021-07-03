@@ -574,13 +574,13 @@ Los recursos accesibles definidos en \textit{urls.py} son los siguientes:
 	Llama a la vista \textit{views.main}.
 	\item \textbf{/repo/id}: Muestra la información correspondiente al repositorio del id indicado y permite llevar a cabo el análisis del mismo y la corrección de los errores detectados.
 	Llama a la vista \textit{views.repo}.
-	\item \textbf{/list}: Devuelve una tabla con la información de todas las Pull-Requests/Merge-Requests que se han llevado a cabo y permite filtrar por el estado de las mismas (abierta, cerrada o aceptada).
+	\item \textbf{/list}: Muestra la información de todas las Pull-Requests/Merge-Requests que se han llevado a cabo.
 	Llama a la vista \textit{views.list}.
 	\item \textbf{/error-list}: Muestra dos gráficas, una con el recuento del número de veces que se ha corregido cada error y otra con el estado actual de las Pull-Requests/Merge-Requests realizadas.
 	Llama a la vista \textit{views.error\_list}.
-	\item \textbf{/guide}: Contiene un resumen sobre la aplicación, una breve guía de uso definiendo cada una de las páginas y una tabla con los errores detectados por Pylint que son corregibles por la aplicación. 
+	\item \textbf{/guide}: Contiene una guía de uso de la aplicación. 
 	Llama a la vista \textit{views.guide}.
-	\item \textbf{/contact}: Muestra los datos de contacto para informar de algún posible problema en la aplicación.
+	\item \textbf{/contact}: Muestra los datos de contacto.
 	Llama a la vista \textit{views.contact}.
 	\item \textbf{/es}: Cambia el idioma del usuario a castellano.
 	Llama a la vista \textit{views.es}.
@@ -590,7 +590,7 @@ Los recursos accesibles definidos en \textit{urls.py} son los siguientes:
 
 \subsubsection{Vistas}
 \label{subsubsec:django_vistas}
-
+ Las vistas de Django definidas en el fichero \textit{views.py} y sus funciones son las siguientes:
 \begin{itemize}
 	\item \textbf{main}: Si recibe un GET, devuelve el template \textit{main.html}.
 	Mientras que si recibe un POST evalúa el contenido introducido en el formulario y, dependiendo de éste, pueden producirse varias situaciones:
@@ -616,6 +616,30 @@ Los recursos accesibles definidos en \textit{urls.py} son los siguientes:
 	\item \textbf{en}: Cambia el valor de la variable de sesión correspondiente al idioma para visualizar el sitio en inglés y redirige a la página principal.
 \end{itemize}
 Además, todas las vistas tienen una parte común al recibir un GET: comprueban el estado de las Pull-Requests/Merge-Requests para actualizarlo en la base de datos si éste ha cambiado y también comprueban el valor de la variable de sesión correspondiente al idioma para así devolver las templates en castellano o en inglés según corresponda.
+
+\subsubsection{Templates}
+\label{subsubsec:django_templates}
+Las plantillas HTML del proyecto se encuentran divididas en los directorios \textit{templates/en} y \textit{templates/es}. Las plantillas de un directorio son prácticamente iguales a las del otro, diferenciándose únicamente en el idioma de los textos.
+
+Las plantillas y sus contenidos son las siguientes:
+\begin{itemize}
+	\item \textbf{base.html}: Fichero base que extienden el resto de plantillas. Define el banner, el fondo y el menú lateral y su funcionamiento mediante un script.
+	\item \textbf{main.html}: Contiene el formulario de introducción de repositorios.
+	\item \textbf{error.html}: Muestra el mensaje de error que se le pase como parámetro.
+	\item \textbf{error\_repo.html}: Muestra un mensaje de error indicando que el formulario no se ha rellenado con una URL que pertenezca a un repositorio.
+	\item \textbf{request\_exists.html}: Informa de que ya existe una Pull-Request/Merge-Request abierta para el repositorio indicado y muestra una tabla con la información de dicho repositorio y la petición realizada.
+	\item \textbf{repo\_data.html}: Muestra una tabla con la información del repositorio introducido y un formulario para ejecutar el análisis con Pylint. Dicho formulario es sustituido por una imagen en movimiento al ser pulsado.
+	\item \textbf{running\_pylint.html}: Muestra una tabla con la información del repositorio introducido y una imagen y mensaje informando de que se está realizando el análisis. Mediante un script, al terminar la carga realiza una redirección ejecutando un POST al recurso \textit{/repo/id} con un body con el mensaje ``running''.
+	\item \textbf{repo\_data\_pylint.html}: Muestra una tabla con la información del repositorio introducido, los errores detectados en el análisis realizado por Pylint y un botón para ejecutar la corrección. Mediante pestañas se puede filtrar para ver todos los errores o sólo los errores corregibles por la aplicación.
+	\item \textbf{fixing\_errors.html}: Muestra una tabla con la información del repositorio introducido y una imagen y mensaje informando de que se está realizando la corrección del código. Mediante un script, al terminar la carga realiza una redirección ejecutando un POST al recurso \textit{/repo/id} con un body con el mensaje ``fixing''.
+	\item \textbf{repo\_data\_success.html}:  Muestra una tabla con la información del repositorio introducido y añade una nueva fila con el enlace a la Pull-Request/Merge-Request realizada.
+	\item \textbf{list.html}: Muestra una tabla con la lista de las Pull-Requests/Merge-Requests realizadas por la aplicación. Mediante pestañas se puede realizar un filtrado según el estado de cada una.
+	\item \textbf{error\_list.html}: Hace uso de la librería de JavaScript Chart.js~\ref{sec:chartjs} para representar dos gráficas, una con el recuento de errores y otra con el estado de las Pull-Requests/Merge-Requests realizadas.
+	\item \textbf{guide.html}: Contiene un resumen sobre la aplicación, una breve guía de uso definiendo cada una de las páginas y una tabla con los errores detectados por Pylint que son corregibles por la aplicación.
+	\item \textbf{contact.html}: Contiene los datos de contacto.
+	\item \textbf{theme.css}: Hoja de estilo para personalizar el aspecto de los elementos HTML de la aplicación.
+\end{itemize}
+
 \subsection{Base de datos}
 \label{subsec:diseño_bbdd}
 
