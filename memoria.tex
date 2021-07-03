@@ -541,7 +541,7 @@ Como ya se ha explicado en la sección~\ref{sec:django}, Django se basa en una a
 En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros que componen la parte Django de la aplicación. Los ficheros y directorios más importantes y sus funciones son los siguientes:
 
 \begin{itemize}
-	\item \textbf{models.py}:  Define el modelo de datos a utilizar en la base de datos de la aplicación. Dentro de la arquitectura MVT de Django, pertenece a \textit{Model}.
+	\item \textbf{models.py}: Define el modelo de datos a utilizar en la base de datos de la aplicación. Dentro de la arquitectura MVT de Django, pertenece a \textit{Model}.
 	\item \textbf{views.py}: En él se definen las vistas encargadas de leer y procesar el contenido de las peticiones HTTP realizadas a la aplicación para después realizar las acciones correspondientes.
 	Como su propio nombre indica, se encuentra dentro de la parte \textit{Views} definida en el modelo de arquitectura MVT.
 	\item \textbf{urls.py}: A través de este fichero se gestiona el acceso a los recursos (URLs) de la aplicación.
@@ -559,10 +559,32 @@ En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros
 \begin{figure}
   \centering
   \includegraphics[height=8cm, keepaspectratio]{img/directorios.png}
-  \caption{Árbol de ficheros de Django.}\label{fig:directorios}
+  \caption{Directorios y ficheros de Django.}\label{fig:directorios}
 \end{figure}
 
+\subsection{Base de datos}
+\label{subsec:diseño_bbdd}
 
+
+
+
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=16cm, keepaspectratio]{img/models.png}
+  \caption{Modelo de datos.}\label{fig:models}
+\end{figure}
+
+ Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
+
+
+
+
+
+\subsection{Recursos}
+\label{subsec:diseño_recursos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
