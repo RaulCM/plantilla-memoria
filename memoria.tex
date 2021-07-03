@@ -591,6 +591,31 @@ Los recursos accesibles definidos en \textit{urls.py} son los siguientes:
 \subsubsection{Vistas}
 \label{subsubsec:django_vistas}
 
+\begin{itemize}
+	\item \textbf{main}: Si recibe un GET, devuelve el template \textit{main.html}.
+	Mientras que si recibe un POST evalúa el contenido introducido en el formulario y, dependiendo de éste, pueden producirse varias situaciones:
+	\begin{itemize}
+		\item El contenido está vacío: se devuelve el template \textit{error.html}.
+		\item El contenido no corresponde a un repositorio: se devuelve el template \textit{error\_repo.html}.
+		\item Se ha introducido un repositorio que tiene una Pull-Request/Merge-Request realizada por la aplicación en estado abierto: se devuelve el template \textit{request\_exists.html}.
+		\item Se ha introducido un repositorio sin ninguna Pull-Request/Merge-Request realizada por la aplicación en estado abierto: se redirige al recurso \textit{/repo/id}.
+	\end{itemize}
+	\item \textbf{repo}: Si recibe un GET, devuelve el template \textit{repo\_data.html}.
+	Mientras que si recibe un POST evalúa el nombre del formulario que ha realizado la petición y, dependiendo de éste, pueden producirse varias situaciones:
+	\begin{itemize}
+		\item \textit{pylint}: Se lanza la función asíncrona que ejecuta el análisis del código utilizando Pylint y se devuelve el template \textit{running\_pylint.html}.
+		\item \textit{running}: Espera un tiempo determinado y comprueba si la función asíncrona que ejecuta el análisis del código ha finalizado. En caso de que haya finalizado, devuelve el template \textit{repo\_data\_pylint.html}, mientras que si el análisis sigue en ejecución, devuelve otra vez el template \textit{running\_pylint.html}.
+		\item \textit{fix\_errors}: Se lanza la función asíncrona que ejecuta la corrección de los errores detectados por Pylint y se devuelve el template \textit{fixing\_errors.html}.
+		\item \textit{fixing}: Espera un tiempo determinado y comprueba si la función asíncrona que ejecuta la corrección del código ha finalizado. En caso de que haya finalizado, devuelve el template \textit{repo\_data\_success.html}, mientras que si el análisis sigue en ejecución, devuelve otra vez el template \textit{fixing\_errors.html}.
+	\end{itemize}
+	\item \textbf{list}: Obtiene la lista de repositorios analizados y devuelve el template \textit{list.html}. 
+	\item \textbf{error\_list}: Obtiene el número de errores corregidos y el estado de las Pull-Requests/Merge-Requests realizadas y  devuelve el template \textit{error\_list.html}.
+	\item \textbf{guide}: Devuelve el template \textit{guide.html}.
+	\item \textbf{contact}: Devuelve el template \textit{contact.html}.
+	\item \textbf{es}: Cambia el valor de la variable de sesión correspondiente al idioma para visualizar el sitio en castellano y redirige a la página principal.
+	\item \textbf{en}: Cambia el valor de la variable de sesión correspondiente al idioma para visualizar el sitio en inglés y redirige a la página principal.
+\end{itemize}
+Además, todas las vistas tienen una parte común al recibir un GET: comprueban el estado de las Pull-Requests/Merge-Requests para actualizarlo en la base de datos si éste ha cambiado y también comprueban el valor de la variable de sesión correspondiente al idioma para así devolver las templates en castellano o en inglés según corresponda.
 \subsection{Base de datos}
 \label{subsec:diseño_bbdd}
 
@@ -623,7 +648,7 @@ Es una base de datos PostgreSQL provisionada por Heroku y externa a la aplicaci�
 
 \subsubsection{Heroku}
 \label{subsubsec:despliegue_heroku}
-Para llevar a cabo el despliegue de la aplicación en Heroku es necesaria la configuración de dos ficheros
+%Para llevar a cabo el despliegue de la aplicación en Heroku es necesaria la configuración de dos ficheros
 
 
 
