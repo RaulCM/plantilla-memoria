@@ -434,7 +434,7 @@ Bootstrap\cite{bootstrap} es un framework de código abierto dirigido al desarro
 
 JavaScript\cite{javascript} es un lenguaje de programación interpretado, orientado a objetos, imperativo, multiparadigma, de tipado débil y dinámico y basado en prototipos. Tiene una sintaxis inspirada en la de Java y C++, con sentencias que funcionan igual que en esos lenguajes.
 Su uso principal es el scripting en páginas web dirigido a establecer el comportamiento de éstas al suceder un evento determinado. La ejecución de estos scripts se realiza en el lado del cliente, en el navegador web, sin tener acceso al lado del servidor.
-El uso de JavaScript está ampliamente extendido debido a que es compatible con cualquier navegador y sistema operativo.
+El uso de JavaScript está ampliamente extendidao debido a que es compatible con cualquier navegador y sistema operativo.
 
 \section{jQuery} 
 \label{sec:jquery}
