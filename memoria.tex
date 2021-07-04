@@ -106,7 +106,7 @@ Creación Automática de Pull-Requests a partir de Resultados de Pylint
 \end{center}
 
 \vspace{1cm}
-La defensa del presente Proyecto Fin de Carrera se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2021, siendo calificada por el siguiente tribunal:
+La defensa del presente Proyecto Fin de Carrera se realizó el día \qquad$\;\,$ de julio de 2021, siendo calificada por el siguiente tribunal:
 
 
 \vspace{0.5cm}
@@ -128,7 +128,7 @@ y habiendo obtenido la siguiente calificación:
 
 \vspace{1cm}
 \begin{flushright}
-Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2021
+Fuenlabrada, a \qquad$\;\,$ de julio de 2021
 \end{flushright}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,7 +334,7 @@ Para poder cumplir con el objetivo general se han tenido en cuenta los siguiente
 \begin{itemize}
 	\item \textbf{Trabajar con proyectos reales.} Utilizar la aplicación para analizar y corregir proyectos reales.
 	\item \textbf{Aplicación web.} Desarrollar como una aplicación web para hacer mejor y más sencilla la experiencia de usuario.
-	\item \textbf{Accesibilidad desde internet.} Hacer que la aplicación esté en funcionamiento continuamente y sea accesible desde cualquier ubicación.
+	\item \textbf{Accesibilidad desde Internet.} Hacer que la aplicación esté en funcionamiento continuamente y sea accesible desde cualquier ubicación.
 	\item \textbf{Compatibilidad con el servidor GitLab de la ETSIT.} Hacer que la aplicación sea compatible con el GitLab de la ETSIT para permitir que los alumnos de la escuela puedan analizar y corregir sus proyectos.
 	\item \textbf{Análisis de aceptación de las Pull-Requests.} Evaluar la aceptación de los cambios realizados en los proyectos mediante el análisis del estado de las Pull-Requests realizadas.
 \end{itemize}
@@ -361,19 +361,19 @@ En este capítulo se describen brevemente las principales tecnologías utilizada
 
 \section{Python} 
 \label{sec:python}
-Python \cite{python} es un lenguaje de programación Open Source escrito por Guido van Rossum entre finales de los años 80 y principio de los 90. El objetivo de la creación de Python era tener un lenguaje de programación con una sintaxis sencilla, como ABC, añadiendo la posibilidad de realizar llamadas al sistema con compatibilidad con distintos sistemas operativos.
+Python \cite{python} es un lenguaje de programación Open Source escrito por Guido van Rossum entre finales de los años 80 y principios de los 90. El objetivo de la creación de Python era tener un lenguaje de programación con una sintaxis sencilla, como el lenguaje ABC en el que se inspira, añadiendo la posibilidad de realizar llamadas al sistema con compatibilidad con distintos sistemas operativos.
 
-Es un lenguaje de programación interpretado, interactivo y orientado a objetos. Al ser un lenguaje interpretado se reduce el tiempo entre la escritura del código y la ejecución del mismo, ya que no hay que compilarlo cada vez que se realice una modificación del código. Sin embargo, ésto implica que sea necesaria la instalación de un intérprete en la máquina que va a ejecutar el código y aumenta el tiempo de la ejecución respecto a los lenguajes compilados.
+Python es un lenguaje de programación interpretado, interactivo y orientado a objetos. Al ser un lenguaje interpretado se reduce el tiempo entre la escritura del código y la ejecución del mismo, ya que no hay que compilarlo cada vez que se realice una modificación del código. Sin embargo, ésto implica que sea necesaria la instalación de un intérprete en la máquina que va a ejecutar el código y aumenta el tiempo de la ejecución respecto a los lenguajes compilados.
 
 Python incorpora módulos, excepciones, tipado dinámico, tipos de datos dinámicos de muy alto nivel y clases. La librería estándar de Python le permite cubrir distintas áreas, como el procesamiento de cadenas de texto, protocolos de red, ingeniería del software e interacción con el sistema operativo.
 
 Además de la programación orientada a objetos, soporta múltiples paradigmas de programación como la programación procedimental y la programación funcional y también es compatible con diversos sistemas operativos, incluyendo Windows y múltiples variantes de Unix, como Linux y macOS.
 
-Actualmente Python es uno de los lenguajes de programación más utilizados.\cite{stackoverflowsurvey}
+Actualmente Python es uno de los lenguajes de programación más utilizados~\cite{stackoverflowsurvey}.
 
 \section{PEP 8} 
 \label{sec:pep8}
-Python Enhancement Proposal 8, más conocida como PEP 8\cite{pep8}, es una guía de estilo para código escrito en Python que contiene recomendaciones y convenciones dirigidas a mejorar la consistencia y legibilidad del código.
+Python Enhancement Proposal 8, más conocida como PEP 8~\cite{pep8}, es una guía de estilo para código escrito en Python que contiene recomendaciones y convenciones dirigidas a mejorar la consistencia y legibilidad del código.
 Algunas de las convenciones indicadas por PEP 8 son las siguientes:
 \begin{itemize}
 	\item \textbf{Tabulación}: Se debe tabular utilizando 4 espacios por cada nivel de tabulación.
@@ -392,7 +392,7 @@ PEP 8 también nos indica que las distintas normas pueden ser ignoradas en deter
 
 \section{Pylint} 
 \label{sec:pylint}
-Pylint \cite{pylint} es una herramienta de análisis de código escrito en Python que comprueba si hay incumplimiento de la guía de estilo PEP 8. Es un analizador de código estático, lo que facilita el análisis del código ya que se realiza sin tener que ejecutarlo.
+Pylint~\cite{pylint} es una herramienta de análisis de código escrito en Python que comprueba si hay incumplimiento de la guía de estilo PEP 8. Es un analizador de código estático, lo que facilita el análisis del código ya que se realiza sin tener que ejecutarlo.
 
 La salida de Pylint muestra para cada error detectado en qué fichero, línea y columna se ha encontrado y, al final de la salida, una calificación del código analizado en función de los errores que se han detectado. El formato de esta salida y las opciones del análisis, como los errores que deben buscarse o los ficheros que deben analizarse, son configurables mediante argumentos introducidos al ejecutar la herramienta o mediante un fichero de configuración llamado pylintrc.
 
@@ -408,18 +408,18 @@ Django\cite{django} es un framework de desarrollo de aplicaciones web de código
 \section{PostgreSQL} 
 \label{sec:postgresql}
 
-PostgreSQL\cite{postgresql} es un sistema de gestión de bases de datos relacionales de código abierto basado en POSTGRES. PostgreSQL es compatible con gran parte del estándar SQL, añade algunas características propias, como el control de concurrencias multiversión o la compatibilidad con consultas complejas, y permite al usuario añadir nuevos tipos de datos, funciones u operadores.
+PostgreSQL~\cite{postgresql} es un sistema de gestión de bases de datos relacionales de código abierto basado en POSTGRES. PostgreSQL es compatible con gran parte del estándar SQL, añade algunas características propias, como el control de concurrencias multiversión o la compatibilidad con consultas complejas, y permite al usuario añadir nuevos tipos de datos, funciones u operadores.
 
 \section{HTML} 
 \label{sec:html}
 
-HTML (Hypertext Markup Language)\cite{htmlcss} es el lenguaje de marcado estándar para la creación de páginas web. Este estándar está a cargo del World Wide Web Consortium (W3C) y es compatible con todos los navegadores web.
+HTML (Hypertext Markup Language)~\cite{htmlcss} es el lenguaje de marcado estándar para la creación de páginas web. Este estándar está a cargo del World Wide Web Consortium (W3C) y es compatible con todos los navegadores web.
 Con HTML se define la estructura de las páginas web mediante la utilización de distintas etiquetas.
 
 \section{CSS} 
 \label{sec:css}
 
-CSS (Cascading Style Sheets)\cite{htmlcss} es un lenguaje de diseño web utilizado para definir la apariencia y el estilo visual de una página web. Al igual que HTML, es un estándar a cargo del World Wide Web Consortium (W3C).
+CSS (Cascading Style Sheets)~\cite{htmlcss} es un lenguaje de diseño web utilizado para definir la apariencia y el estilo visual de una página web. Al igual que HTML, es un estándar a cargo del World Wide Web Consortium (W3C).
 CSS establece cómo se muestran los elementos declarados en un documento HTML definiendo propiedades como los colores, fuentes y diseño. Para ello CSS hace uso de reglas, formadas por selectores, que indican sobre qué elementos HTML se aplican, y declaraciones, que definen y modifican las propiedades.
 CSS es independiente de HTML y se puede llevar a cabo desde un fichero separado, lo que facilita el mantenimiento y la reutilización de las hojas de estilo.
 
@@ -427,30 +427,30 @@ CSS es independiente de HTML y se puede llevar a cabo desde un fichero separado,
 \section{Bootstrap} 
 \label{sec:bootstrap}
 
-Bootstrap\cite{bootstrap} es un framework de código abierto dirigido al desarrollo front-end de páginas web. Es una biblioteca que contiene herramientas HTML, CSS y JavaScript que facilitan el diseño y ayudan a realizar modificaciones de manera más sencilla en el estilo visual. Bootstrap contiene plantillas predefinidas con diferentes estilos de botones, formularios, desplegables o pestañas, entre otros componentes. Una de las características más importantes de Bootstrap es que también aporta el diseño responsive, que adapta automáticamente la presentación de la página web a diferentes tipos de dispositivos teniendo en cuenta el tamaño de pantalla y la resolución, lo que facilita la visualización y aumenta la compatibilidad de las páginas web.
+Bootstrap~\cite{bootstrap} es un framework de código abierto dirigido al desarrollo front-end de páginas web. Es una biblioteca que contiene herramientas HTML, CSS y JavaScript que facilitan el diseño y ayudan a realizar modificaciones de manera más sencilla en el estilo visual. Bootstrap contiene plantillas predefinidas con diferentes estilos de botones, formularios, desplegables o pestañas, entre otros componentes. Una de las características más importantes de Bootstrap es que también aporta el diseño responsive, que adapta automáticamente la presentación de la página web a diferentes tipos de dispositivos teniendo en cuenta el tamaño de pantalla y la resolución, lo que facilita la visualización y aumenta la compatibilidad de las páginas web.
 
 \section{JavaScript} 
 \label{sec:javascript}
 
-JavaScript\cite{javascript} es un lenguaje de programación interpretado, orientado a objetos, imperativo, multiparadigma, de tipado débil y dinámico y basado en prototipos. Tiene una sintaxis inspirada en la de Java y C++, con sentencias que funcionan igual que en esos lenguajes.
+JavaScript~\cite{javascript} es un lenguaje de programación interpretado, orientado a objetos, imperativo, multiparadigma, de tipado débil y dinámico y basado en prototipos. Tiene una sintaxis inspirada en la de Java y C++, con sentencias que funcionan igual que en esos lenguajes.
 Su uso principal es el scripting en páginas web dirigido a establecer el comportamiento de éstas al suceder un evento determinado. La ejecución de estos scripts se realiza en el lado del cliente, en el navegador web, sin tener acceso al lado del servidor.
 El uso de JavaScript está ampliamente extendido debido a que es compatible con cualquier navegador y sistema operativo.
 
 \section{jQuery} 
 \label{sec:jquery}
 
-jQuery\cite{jquery} es una librería de JavaScript de código abierto que simplifica la interacción entre JavaScript y HTML. jQuery facilita la manipulación del HTML, el manejo de eventos, el desarrollo de animaciones y el uso de AJAX y es compatible con cualquier navegador web y sistema operativo actual.
+jQuery~\cite{jquery} es una librería de JavaScript de código abierto que simplifica la interacción entre JavaScript y HTML. jQuery facilita la manipulación del HTML, el manejo de eventos, el desarrollo de animaciones y el uso de AJAX y es compatible con cualquier navegador web y sistema operativo actual.
 
 \section{Chart.js} 
 \label{sec:chartjs}
 
-Chart.js\cite{chartjs} es una librería de JavaScript de código abierto dirigida a la representación y visualización de datos. Permite generar gráficos de distintos tipos, como barras, líneas, circulares o de dispersión, entre otros, y personalizar cómo se muestran dichos gráficos.
+Chart.js~\cite{chartjs} es una librería de JavaScript de código abierto dirigida a la representación y visualización de datos. Permite generar gráficos de distintos tipos, como barras, líneas, circulares o de dispersión, entre otros, y personalizar cómo se muestran dichos gráficos.
 Actualmente es una de las librerías de visualización de datos en JavaScript más populares en GitHub.
 
 \section{JSON} 
 \label{sec:json}
 
-JSON\cite{json} (JavaScript Object Notation) es un formato de intercambio de datos fácil de leer y escribir para humanos y fácil de generar e interpretar para las máquinas. Como su nombre indica, está basado en la sintaxis de objetos de JavaScript, teniendo una estructura formada por pares de nombre/valor.
+JSON~\cite{json} (JavaScript Object Notation) es un formato de intercambio de datos fácil de leer y escribir para humanos y fácil de generar e interpretar para las máquinas. Como su nombre indica, está basado en la sintaxis de objetos de JavaScript, teniendo una estructura formada por pares de nombre/valor.
 JSON es independiente de cualquier lenguaje y, por ello, es compatible con la gran mayoría de los lenguajes de programación actuales.
 
 \section{API-REST} 
@@ -458,7 +458,7 @@ JSON es independiente de cualquier lenguaje y, por ello, es compatible con la gr
 
 Una API (Application Programming Interface) es un conjunto de instrucciones y protocolos ofrecidos por determinadas aplicaciones para dar acceso a su propia información o funciones. La API actúa como intermediario entre la propia aplicación y el solicitante y devuelve a éste último una respuesta con el resultado de la operación realizada o con la información solicitada.
 
-Una API-REST es un tipo de API en el que el acceso está basado en arquitectura REST (Representational State Transfer), por lo que las llamadas a dicha API se llevan a cabo mediante peticiones HTTP y el uso de objetos XML o JSON.
+Una API REST es un tipo de API en el que el acceso está basado en arquitectura REST (Representational State Transfer), por lo que las llamadas a dicha API se llevan a cabo mediante peticiones HTTP y el uso de objetos XML o JSON.
 
 \section{Git} 
 \label{sec:git}
@@ -471,20 +471,20 @@ El funcionamiento de Git se basa en la creación, uso y mezcla de ramas dentro d
 \section{GitHub} 
 \label{sec:github}
 
-GitHub\cite{github} es un servicio web, propiedad de Microsoft, que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Permite la creación de repositorios públicos, que podrán ser vistos y descargados por cualquier usuario, y repositorios privados, que únicamente serán visibles por los colaboradores de dicho repositorio.
+GitHub~\cite{github} es un servicio web, propiedad de Microsoft, que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Permite la creación de repositorios públicos, que podrán ser vistos y descargados por cualquier usuario, y repositorios privados, que únicamente serán visibles por los colaboradores de dicho repositorio.
 Cualquier usuario puede colaborar en proyectos públicos mediante la creación de Pull-Requests. De esta manera un usuario externo al proyecto puede sugerir al propietario de un repositorio que realice los cambios indicados en un proyecto, mientras que el usuario propietario puede decidir aceptar o no las modificaciones realizadas.
 Es la plataforma de almacenamiento de repositorios más usada.
 
 \section{GitLab} 
 \label{sec:gitlab}
 
-GitLab\cite{gitlab} es un servicio web de código abierto que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Al igual que GitHub, permite la creación de repositorios públicos y privados y tiene un sistema de Pull-Requests que, en este caso, se denominan Merge-Requests.
+GitLab~\cite{gitlab} es un servicio web de código abierto que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Al igual que GitHub, permite la creación de repositorios públicos y privados y tiene un sistema de Pull-Requests que, en este caso, se denominan Merge-Requests.
 GitLab permite la instalación en un servidor privado para no hacer uso de la plataforma pública que se encuentra abierta a todo el mundo.
 
 \section{Heroku} 
 \label{sec:Heroku}
 
-Heroku\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar aplicaciones en la nube. Es compatible con aplicaciones desarrolladas en Node.js, Ruby, Python, Java, PHP, Go, Scala y Clojure y con bases de datos PostgreSQL, MongoDB y Redis.
+Heroku~\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar aplicaciones en la nube. Es compatible con aplicaciones desarrolladas en Node.js, Ruby, Python, Java, PHP, Go, Scala y Clojure y con bases de datos PostgreSQL, MongoDB y Redis.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
