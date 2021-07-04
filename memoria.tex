@@ -32,6 +32,7 @@
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage{hyperref}
 \usepackage{dirtree}
+\usepackage{makecell}
 
 \title{Memoria del Proyecto}
 \author{Raúl Cano Montero}
@@ -136,6 +137,7 @@ Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2021
 \chapter*{}
 \pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
+%TODO
 \textit{Dedicado a \\
 mi familia / mi abuelo / mi abuela}
 \end{flushright}
@@ -146,7 +148,7 @@ mi familia / mi abuelo / mi abuela}
 \chapter*{Agradecimientos}
 %\addcontentsline{toc}{chapter}{Agradecimientos} % si queremos que aparezca en el índice
 \markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} % encabezado 
-
+%TODO
 Aquí vienen los agradecimientos\ldots Aunque está bien acordarse de la pareja, no hay que olvidarse de dar las gracias a tu madre, que aunque a veces no lo parezca disfrutará tanto de tus logros como tú\ldots 
 Además, la pareja quizás no sea para siempre, pero tu madre sí.
 
@@ -194,12 +196,12 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 \tableofcontents 
 %%%% Índice de figuras
 \cleardoublepage
-%\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
+\addcontentsline{toc}{chapter}{Lista de figuras} % para que aparezca en el indice de contenidos
 \listoffigures % indice de figuras
 %%%% Índice de tablas
-%\cleardoublepage
-%\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
-%\listoftables % indice de tablas
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Lista de tablas} % para que aparezca en el indice de contenidos
+\listoftables % indice de tablas
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,7 +213,7 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 \chapter{Introducción}
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
-
+%TODO
 En este capítulo se introduce el proyecto.
 Debería tener información general sobre el mismo, dando la información sobre el contexto en el que se ha desarrollado.
 
@@ -293,7 +295,7 @@ Se puede utilizar para ofrecer el contenido de correos electrónicos, código, e
 
 \section{Estructura de la memoria}
 \label{sec:estructura}
-
+%TODO
 En esta sección se debería introducir la esctura de la memoria. 
 
 Así:
@@ -340,7 +342,7 @@ Para poder cumplir con el objetivo general se han tenido en cuenta los siguiente
 
 \section{Planificación temporal}
 \label{sec:planificacion-temporal}
-% TODO
+%TODO
 A mí me gusta que aquí pongáis una descripción de lo que os ha llevado realizar el trabajo.
 Hay gente que añade un diagrama de GANTT.
 Lo importante es que quede claro cuánto tiempo llevas (tiempo natural, p.ej., 6 meses) y a qué nivel de esfuerzo (p.ej., principalmente los fines de semana).
@@ -533,12 +535,29 @@ Por último, el servidor devuelve al cliente el código HTTP con la respuesta a 
 \section{Diseño e implementación del servidor} 
 \label{sec:diseno_servidor}
 
+El funcionamiento global de la aplicación y sus etapas son las representadas en la figura~\ref{fig:uso}.
+
+El inicio del uso de la aplicación es la introducción en un formulario de la URL del repositorio que se va analizar. Una vez comprobado que la URL introducida apunta a un repositorio, se descargan los datos del mismo y se lleva a cabo la primera de las etapas principales, el análisis del código mediante la utilización de Pylint.
+Una vez se ha analizado el código y se ha confirmado que se quieren llevar a cabo las modificaciones correspondientes a los errores detectados por Pylint, se realiza un fork del repositorio, se descarga el código de dicho fork y se realiza la segunda etapa principal, la corrección de los errores.
+Cuando se ha terminado con la corrección se llega al final del proceso con la realización de una Pull-Request/Merge-Request con las modificaciones realizada en el código.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm, keepaspectratio]{img/uso.png}
+  \caption{Etapas del uso de la aplicación.}\label{fig:uso}
+\end{figure}
+
 \subsection{Django}
 \label{subsec:diseño_django}
 
 Como ya se ha explicado en la sección~\ref{sec:django}, Django se basa en una arquitectura MVT como la representada en la figura~\ref{fig:django}.
 
-\begin{figure}
+Las peticiones HTTP son procesadas por la parte \textit{Views} que realiza las acciones correspondientes y, si es necesario, se comunica \textit{Model} para obtener o modificar la información almacenada en la base de datos.
+Una vez realizado el procesamiento, es la parte \textit{Templates} la que se encarga de construir la respuesta HTTP a partir de los datos proporcionados por \textit{Views} y las plantillas HTML.
+
+Esta respuesta HTTP es enviada de vuelta al cliente, que visualiza la página construida por \textit{Templates}, mostrando los datos de \textit{Model} que han sido procesados por \textit{Views}.
+
+\begin{figure}[h]
   \centering
   \includegraphics[width=12cm, keepaspectratio]{img/django.png}
   \caption{Arquitectura Django.}\label{fig:django}
@@ -640,6 +659,35 @@ Las plantillas y sus contenidos son las siguientes:
 	\item \textbf{theme.css}: Hoja de estilo para personalizar el aspecto de los elementos HTML de la aplicación.
 \end{itemize}
 
+\subsection{Errores de Pylint}
+\label{subsec:errores}
+
+En el fichero \textit{pylint\_errors.py} se definen qué errores detectados por Pylint van a ser corregidos y cómo va a llevarse a cabo la corrección. 
+El listado de errores corregibles por la aplicación se puede visualizar en la tabla~\ref{tabla:errores}.
+
+Pylint indica dónde aparecen los errores mediante el número de línea en el que se encuentran, por lo que para realizar la corrección se ha hecho uso de placeholders que se añaden al código e indican si una determinada línea tiene un error y de qué tipo es.
+De esta forma no se cambian las líneas de posición y se evitan posibles modificaciones en las líneas incorrectas.
+Una vez terminada la colocación de los placeholders para todo el código, se vuelve a escanear el fichero línea por línea y se aplica la corrección correspondiente para cada placeholder encontrado.
+\begin{table}
+ \begin{center}
+  \begin{tabular}{ | l | c | c |}
+    \hline
+    \textbf{Error ID} & \textbf{Error Name} & \textbf{Message} \\ \hline
+    C0303 & trailing-whitespace & \makecell[l]{Trailing whitespace. Used when there is whitespace\\between the end of a line and the newline.} \\ \hline
+    C0304 & missing-final-newline & \makecell[l]{Final newline missing. Used when the last line in\\a file is missing a newline.} \\ \hline
+    C0321 & multiple-statements & \makecell[l]{More than one statement on a single line. Used when\\more than on statement are found on the same line.} \\ \hline
+    C0326 & bad-whitespace & \makecell[l]{\%s space \%s \%s \%s. Used when a wrong number of spaces\\is used around an operator, bracket or block opener.} \\ \hline
+    C0410 & multiple-imports & \makecell[l]{Multiple imports on one line (\%s). Used when import\\statement importing multiple modules is detected.} \\ \hline
+    C0411 & wrong-import-order & \makecell[l]{\%s should be placed before \%s. Used when PEP8\\import order is not respected (standard imports first, then\\third-party libraries, then local imports)} \\ \hline
+    C0413 & wrong-import-position & \makecell[l]{Import "\%s" should be placed at the top of the\\module. Used when code and imports are mixed} \\ \hline
+    W0404 & reimported & \makecell[l]{Reimport \%r (imported line \%s). Used when a module\\is reimported multiple times.} \\ \hline
+    W0611 & unused-import & \makecell[l]{Unused \%s. Used when an imported module or\\variable is not used.} \\ \hline
+  \end{tabular}
+  \label{tabla:errores}
+  \caption{Errores detectados por Pylint corregibles por la aplicación.}
+ \end{center}
+\end{table}
+
 \subsection{Base de datos}
 \label{subsec:diseño_bbdd}
 
@@ -665,17 +713,24 @@ Es una base de datos PostgreSQL provisionada por Heroku y externa a la aplicaci�
 \subsection{Despliegue}
 \label{subsec:diseño_despliegue}
 
+El despliegue de la aplicación se ha configurado para que se lleve a cabo de manera automática mediante el uso de las GitHub Actions y Heroku.
 
 \subsubsection{Github}
 \label{subsubsec:despliegue_github}
 
+Cuando se realiza un push y se suben los nuevos commits a GitHub, se ejecutan automáticamente las GitHub Actions definidas en el directorio \textit{/.github/workflows/}.
+
+El fichero \textit{main.yml}, ubicado en dicho directorio, hace uso de la GitHub Action \textit{akhileshns/heroku-deploy@v3.12.12}~\cite{herokudeploy}, logrando así que la aplicación se despliegue automáticamente en Heroku cada vez que se hace push al repositorio que contiene el código.
 
 \subsubsection{Heroku}
 \label{subsubsec:despliegue_heroku}
-%Para llevar a cabo el despliegue de la aplicación en Heroku es necesaria la configuración de dos ficheros
+Para llevar a cabo el despliegue de la aplicación en Heroku es necesaria la configuración de dos ficheros, \textit{Procfile} y \textit{requirements.txt}.
 
+\textit{Procfile} especifica los comandos que se van a ejecutar durante el despliegue de la aplicación en Heroku.
+Para esta aplicación se especifica que se deben realizar las migraciones del modelo de datos en el momento del lanzamiento, o \textit{release}, por si se hubiese llevado a cabo alguna modificación en \textit{models.py}, y se ejecuta el comando \textit{runserver} como un proceso de tipo web para que sea accesible y pueda recibir peticiones HTTP desde fuera de Heroku.
 
-
+El fichero \textit{requirements.txt} hace que Heroku identifique automáticamente la aplicación como una aplicación desarrollada en Python y en su interior se definen las dependencias, incluyendo la versión, que deben ser instaladas antes del arranque de la aplicación en Heroku.
+Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \textit{Django}, \textit{Pylint}, o \textit{requests}, entre otros.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -686,10 +741,6 @@ Es una base de datos PostgreSQL provisionada por Heroku y externa a la aplicaci�
 \cleardoublepage
 \chapter{Experimentos y validación}
 
-Este capítulo se introdujo como requisito en 2019. 
-Describe los experimentos y casos de test que tuviste que implementar para validar tus resultados. 
-Incluye también los resultados de validación que permiten afirmar que tus resultados son correctos. 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -698,7 +749,7 @@ Incluye también los resultados de validación que permiten afirmar que tus resu
 
 \cleardoublepage
 \chapter{Resultados}
-
+%TODO
 En este capítulo se incluyen los resultados de tu trabajo fin de grado.
 
 Si es una herramienta de análisis lo que has realizado, aquí puedes poner ejemplos de haberla utilizado para que se vea su utilidad.
@@ -712,7 +763,7 @@ Si es una herramienta de análisis lo que has realizado, aquí puedes poner ejem
 \cleardoublepage
 \chapter{Conclusiones}
 \label{chap:conclusiones}
-
+%TODO
 
 \section{Consecución de objetivos}
 \label{sec:consecucion-objetivos}
@@ -768,7 +819,7 @@ Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
 \appendix
 \chapter{Manual de usuario}
 \label{app:manual}
-
+%TODO
 Esto es un apéndice.
 Si has creado una aplicación, siempre viene bien tener un manual de usuario.
 Pues ponlo aquí.
