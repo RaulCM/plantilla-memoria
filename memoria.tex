@@ -527,7 +527,7 @@ Cualquier usuario puede colaborar en proyectos públicos mediante la creación p
 Para esto, un usuario externo a un repositorio crea un fork del mismo, crea una nueva rama dentro de ese fork para llevar a cabo las modificaciones y, una vez realizado los commits y push, puede crear la Pull-Request.
 Durante la creación de una Pull-Request se le da un nombre y una descripción a la misma y se tiene la posibilidad de visualizar y revisar los commits incluidos junto a las diferencias entre el código del repositorio original y el de la Pull-Request.
 Una vez creada una Pull-Request el usuario que la ha creado puede seguir realizando commits sobre la misma y además otros usuarios pueden participar en las modificaciones llevadas a cabo y sugerir cambios, añadir comentarios o realizar nuevos commits sobre la Pull-Request.
-Cuando el propietario del repositorio original esté de acuerdo con los cambios propuestos en la Pull-Request, puede aceptarla, fusionando así el contenido de la Pull-Request con el del repositorio original.
+Cuando el propietario del repositorio original esté de acuerdo con los cambios propuestos en la Pull-Request, puede aceptarla, haciendo \textit{merge} y fusionando así el contenido de la Pull-Request con el del repositorio original.
 
 \section{GitLab} 
 \label{sec:gitlab}
@@ -796,7 +796,8 @@ Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \t
 \chapter{Experimentos y validación}
 
 \section{Tests unitarios}
-\label{sec:tests}
+\label{sec:tests_unitarios}
+
 Para comenzar las pruebas del correcto funcionamiento de la aplicación se ha hecho uso de la herramienta de tests unitarios incluida en Django.
 Dichos tests unitarios se encuentran en el fichero \textit{/analyzerapp/tests.py} y están diseñados para comprobar que las funciones correspondientes a cada error son capaces de situar correctamente el placeholder indicado en las líneas afectadas y que las funciones que corrigen los errores al encontrar un placeholder son capaces de hacerlo correctamente.
 \begin{figure}[h]
@@ -807,6 +808,45 @@ Dichos tests unitarios se encuentran en el fichero \textit{/analyzerapp/tests.py
 
 La salida de la ejecución de los tests unitarios desde el propio Django puede ser observada en la figura~\ref{fig:tests}. En ella se refleja que la ejecución de los tests unitarios es exitosa tanto para los 9 tests correspondientes a las funciones que añaden los placehoolders, como para los 4 tests correspondientes a la corrección de los errores y borrado de los placeholders.
 
+\section{Análisis y corrección de proyectos en local}
+\label{sec:tests_local}
+
+Tras comprobar el correcto funcionamiento de las funciones de corrección de errores mediante los tests unitarios, el siguiente paso ha sido realizar pruebas con proyectos en local para comprobar que se realiza correctamente tanto el análisis con Pylint como la corrección de los errores detectados.
+En estas primeras pruebas no se ha ejecutado la aplicación utilizando Django, se ha creado un script con el contenido de las funciones del fichero \textit{views.py} y se ha ejecutado el análisis y la corrección ejecutando dicho script.
+
+El primer paso ha sido realizar las pruebas con un único fichero, para ello se ha creado dos ficheros con las mismas sentencias de Python.
+El primero de ellos contiene errores corregibles por la aplicación, mientras que el segundo de ellos cumple con todas las normas de estilo que indican los errores que la aplicación es capaz de corregir.
+
+Es durante esta prueba cuando se observa que, al realizar las correcciones del código al mismo tiempo que se recorre el fichero con la salida de Pylint, algunas sentencias pueden sufrir cambios en su número de línea, lo que puede provocar que se realicen modificaciones en las líneas equivocadas y el fichero no pueda ejecutarse por errores de sintaxis.
+Para solucionar este problema se toma la decisión de no realizar acciones que puedan cambiar los números de línea de ninguna sentencia mientras se lee la salida de Pylint y, para ello, únicamente se llevará a cabo la colocación de placeholders durante esta lectura.
+Estos placeholders indican qué acción hay que realizar sobre la línea en la que se encuentran y, si fuese necesario, un número indicando en qué posición de la línea se encuentra el problema.
+Al terminar de situar los placeholders en el fichero se vuelve a recorrer el mismo buscando dichos placeholders y realizando la acción correspondiente para corregir el error.
+
+Tras solventar dicho problema, se procede a ejecutar la aplicación sobre el fichero que contiene los errores y se observa que ambos fichero son totalmente idénticos, por lo que se confirma que la aplicación ha funcionado correctamente al ser ejecutada sobre un único fichero con errores.
+
+Después de comprobar que el análisis y la corrección sobre un único fichero ha tenido éxito, el siguiente paso es realizarlo sobre un proyecto que contenga distintos directorios y ficheros, incluyendo tanto ficheros con extensión \textit{.py} como ficheros con otras extensiones o sin extensión.
+Para ello se han creado copias del fichero inicial que contenía los errores y se han distribuido en diferentes directorios dentro de un mismo proyecto realizando cambios en el nombre para poder tener varios en el mismo directorio y eliminando la extensión para comprobar que no se ven afectados por el análisis.
+Tras ejecutar la aplicación sobre el directorio raíz del proyecto se comprueba que ésta funciona correctamente, ya que todos los ficheros con extensión \textit{.py} contenidos en los diferentes directorios y subdirectorios han sido corregidos y son idénticos al fichero inicial sin errores corregibles, mientras que los ficheros sin extensión \textit{.py} no se han visto modificados por la aplicación.
+
+\section{Análisis y correción de repositorios en GitHub y GitLab}
+\label{sec:tests_repositorios}
+
+Para poder comprobar que la aplicación al completo funciona correctamente se ha dejado de usar el script indicado en la sección~\ref{sec:tests_local} y se ha levantado la aplicación Django en local.
+Tras tener la aplicación Django funcionando correctamente,se ha creado un repositorio en GitHub que contiene un único fichero como el indicado en la primera prueba exitosa de la sección~\ref{sec:tests_local} y se ha introducido la URL de dicho repositorio en el formulario de la página principal de la aplicación.
+Una vez terminado el proceso, se comprueba que se ha realizado la Pull-Request y que ésta contiene un commit modificando el único fichero del repositorio que, en caso de realizarse el \textit{merge} de la Pull-Request con el repositorio, pasa a ser idéntico al fichero inicial sin los errores corregibles por la aplicación. También se comprueba que la Pull-Request realizada contiene en su descripción un breve mensaje con un enlace a la aplicación y a la documentación de la guía de estilo PEP8 y después el listado con los errores que han sido corregidos por la aplicación tal y como los muestra Pylint en su salida.
+
+En este proceso se recibe un mensaje de GitHub notificando que la autenticación mediante usuario y contraseña al usar la API va a ser deshabilitada próximamente, por lo que se modifica el método de autenticación para usar un token de acceso y se comprueba que el proceso de creación de la Pull-Request sigue funcionando correctamente.
+
+Tras esta corrección y la creación de la Pull-Request de manera exitosa, se realiza el mismo proceso utilizando el proyecto con múltiples directorios y ficheros que se ha usado en la segunda parte de la sección~\ref{sec:tests_local}.
+Al finalizar el proceso se observa que se ha realizado la creación de la Pull-Request de manera adecuada, modificando correctamente todos los ficheros con extensión \textit{.py} y dejando intactos los que no tienen ninguna extensión.
+
+Estos dos mismos experimentos se repiten utilizando un repositorio alojado en el GitLab de la ETSIT de la URJC en lugar de GitLab y, como en el caso anterior, ambas pruebas concluyen de manera satisfactoria.
+
+\section{Aplicación desplegada en Heroku}
+\label{sec:tests_heroku}
+
+Como última prueba, se realiza el despliegue de la aplicación en Heroku y se repiten las pruebas utilizando repositorios con subdirectorios y múltiples ficheros alojados en GitHub y en el GitLab de la ETSIT de la URJC.
+Estas pruebas tienen el mismo resultado que al haber desplegado la aplicación Django en local, por lo que se puede validar el funcionamiento correcto de la aplicación completa ya desplegada en Heroku y siendo accesible desde Internet, finalizando así las pruebas y tests ejecutados sobre la aplicación.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
