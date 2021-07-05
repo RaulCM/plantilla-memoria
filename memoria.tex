@@ -394,7 +394,57 @@ PEP 8 también nos indica que las distintas normas pueden ser ignoradas en deter
 \label{sec:pylint}
 Pylint~\cite{pylint} es una herramienta de análisis de código escrito en Python que comprueba si hay incumplimiento de la guía de estilo PEP 8. Es un analizador de código estático, lo que facilita el análisis del código ya que se realiza sin tener que ejecutarlo.
 
-La salida de Pylint muestra para cada error detectado en qué fichero, línea y columna se ha encontrado y, al final de la salida, una calificación del código analizado en función de los errores que se han detectado. El formato de esta salida y las opciones del análisis, como los errores que deben buscarse o los ficheros que deben analizarse, son configurables mediante argumentos introducidos al ejecutar la herramienta o mediante un fichero de configuración llamado pylintrc.
+Pylint identifica los errores mediante mensajes a los que se les asigna una letra seguida de un código numérico, cada letra especifica un tipo de mensaje:
+\begin{itemize}
+	\item \textbf{I}: Mensajes informativos. No penalizan en la calificación emitida el final de análisis.
+	\item \textbf{R}: Refactorizaciones para solucionar errores en la métrica.
+	\item \textbf{C}: Convenciones para violaciones estándar del código.
+	\item \textbf{W}: Warnings o advertencias causadas por problemas de estilo o problemas menores de programación.
+	\item \textbf{E}: Errores debidos a problemas importantes de programación.
+	\item \textbf{F}: Errores fatales que impiden continuar con el proceso.
+\end{itemize}
+
+La salida de Pylint puede ser configurada mediante argumentos en el momento de ejecución o mediante un fichero de configuración llamado \textit{pylintrc}.
+Dicha salida se divide en 3 secciones: análisis del código fuente, informes y calificación.
+
+\subsubsection{Análisis del código fuente}
+
+Primera y principal sección de la salida de Pylint. Muestra los errores que Pylint ha encontrado al analizar todas las líneas del código.
+Por defecto, para cada error detectado indica el tipo correspondiente, en qué línea y columna se ha encontrado y el mensaje correspondiente a dicho error.
+Esta salida es configurable mediante un template, permitiendo mostrar los siguientes elementos a la información de cada error detectado:
+\begin{itemize}
+	\item \textit{path}: Ruta relativa del fichero analizado.
+	\item \textit{abspath}: Ruta absoluta del fichero analizado.
+	\item \textit{line}: Número de línea.
+	\item \textit{column}: Número de columna.
+	\item \textit{module}: Nombre del módulo.
+	\item \textit{obj}: Nombre del objeto dentro del módulo (si corresponde).
+	\item \textit{msg}: Texto del mensaje.
+	\item \textit{msg\_id}: Código del mensaje.
+	\item \textit{symbol}: Nombre del mensaje.
+	\item \textit{C}: Letra identificativa de la categoría del mensaje.
+	\item \textit{category}: Nombre completo de la categoría del mensaje.
+\end{itemize} 
+
+\subsubsection{Informes}
+
+Segunda sección de la salida de Pylint. 
+Por defecto, muestra un conjunto de informes acerca de distintos aspectos del código analizado, pero puede ser desactivado mediante un argumento en el momento de ejecutar el análisis.
+Los informes mostrados son los siguientes:
+\begin{itemize}
+	\item Numero de módulos analizados.
+	\item Para cada módulo, porcentaje de errores y warnings.
+	\item Número total de errores y warnings.
+	\item Porcentaje de clases, funciones y módulos que incluyen docstrings y comparación con la ejecución previa del análisis.
+	\item Porcentaje de clases, funciones y módulos con un nombre correcto según el estándar y una comparación con la ejecución previa del análisis.
+	\item Lista de dependencias externas encontradas en el código y dónde aparecen.
+\end{itemize}
+
+\subsubsection{Calificación}
+
+Tercera y última sección de la salida de Pylint.
+Muestra una calificación global, siendo 10.0 el máximo, para el código analizado y lo compara con la calificación obtenida en la ejecución previa del añalisis.
+Al igual que los informes, puede ser desactivado mediante un argumento en el momento de ejecutar el análisis.
 
 \section{Django} 
 \label{sec:django}
