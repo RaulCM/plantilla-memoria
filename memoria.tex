@@ -799,14 +799,14 @@ Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \t
 \label{sec:tests_unitarios}
 
 Para comenzar las pruebas del correcto funcionamiento de la aplicación se ha hecho uso de la herramienta de tests unitarios incluida en Django.
-Dichos tests unitarios se encuentran en el fichero \textit{/analyzerapp/tests.py} y están diseñados para comprobar que las funciones correspondientes a cada error son capaces de situar correctamente el placeholder indicado en las líneas afectadas y que las funciones que corrigen los errores al encontrar un placeholder son capaces de hacerlo correctamente.
+Dichos tests unitarios se encuentran en el fichero \textit{/analyzerapp/tests.py} y están diseñados para comprobar que las funciones correspondientes a cada error son capaces de situar correctamente el placeholder indicado en las líneas afectadas, y que las funciones que corrigen los errores al encontrar un placeholder son capaces de hacerlo correctamente.
 \begin{figure}[h]
   \centering
   \includegraphics[width=10cm, keepaspectratio]{img/tests.png}
   \caption{Salida de la ejecución de los tests unitarios en Django.}\label{fig:tests}
 \end{figure}
 
-La salida de la ejecución de los tests unitarios desde el propio Django puede ser observada en la figura~\ref{fig:tests}. En ella se refleja que la ejecución de los tests unitarios es exitosa tanto para los 9 tests correspondientes a las funciones que añaden los placehoolders, como para los 4 tests correspondientes a la corrección de los errores y borrado de los placeholders.
+La salida de la ejecución de los tests unitarios desde el propio Django puede ser observada en la figura~\ref{fig:tests}. En ella se refleja que la ejecución de los tests unitarios es exitosa tanto para los nueve tests correspondientes a las funciones que añaden los placehoolders, como para los cuatro tests correspondientes a la corrección de los errores y borrado de los placeholders.
 
 \section{Análisis y corrección de proyectos en local}
 \label{sec:tests_local}
@@ -832,7 +832,7 @@ Tras ejecutar la aplicación sobre el directorio raíz del proyecto se comprueba
 \label{sec:tests_repositorios}
 
 Para poder comprobar que la aplicación al completo funciona correctamente se ha dejado de usar el script indicado en la sección~\ref{sec:tests_local} y se ha levantado la aplicación Django en local.
-Tras tener la aplicación Django funcionando correctamente,se ha creado un repositorio en GitHub que contiene un único fichero como el indicado en la primera prueba exitosa de la sección~\ref{sec:tests_local} y se ha introducido la URL de dicho repositorio en el formulario de la página principal de la aplicación.
+Tras tener la aplicación Django funcionando correctamente, se ha creado un repositorio en GitHub que contiene un único fichero como el indicado en la primera prueba exitosa de la sección~\ref{sec:tests_local} y se ha introducido la URL de dicho repositorio en el formulario de la página principal de la aplicación.
 Una vez terminado el proceso, se comprueba que se ha realizado la Pull-Request y que ésta contiene un commit modificando el único fichero del repositorio que, en caso de realizarse el \textit{merge} de la Pull-Request con el repositorio, pasa a ser idéntico al fichero inicial sin los errores corregibles por la aplicación. También se comprueba que la Pull-Request realizada contiene en su descripción un breve mensaje con un enlace a la aplicación y a la documentación de la guía de estilo PEP8 y después el listado con los errores que han sido corregidos por la aplicación tal y como los muestra Pylint en su salida.
 
 En este proceso se recibe un mensaje de GitHub notificando que la autenticación mediante usuario y contraseña al usar la API va a ser deshabilitada próximamente, por lo que se modifica el método de autenticación para usar un token de acceso y se comprueba que el proceso de creación de la Pull-Request sigue funcionando correctamente.
