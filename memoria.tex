@@ -521,9 +521,13 @@ El funcionamiento de Git se basa en la creación, uso y mezcla de ramas dentro d
 \section{GitHub} 
 \label{sec:github}
 
-GitHub~\cite{github} es un servicio web, propiedad de Microsoft, que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Permite la creación de repositorios públicos, que podrán ser vistos y descargados por cualquier usuario, y repositorios privados, que únicamente serán visibles por los colaboradores de dicho repositorio.
-Cualquier usuario puede colaborar en proyectos públicos mediante la creación de Pull-Requests. De esta manera un usuario externo al proyecto puede sugerir al propietario de un repositorio que realice los cambios indicados en un proyecto, mientras que el usuario propietario puede decidir aceptar o no las modificaciones realizadas.
-Es la plataforma de almacenamiento de repositorios más usada.
+GitHub~\cite{github} es un servicio web, propiedad de Microsoft, que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git, siendo actualmente la plataforma de almacenamiento de repositorios más usada. Permite la creación de repositorios públicos, que podrán ser vistos y descargados por cualquier usuario, y repositorios privados, que únicamente serán visibles por los colaboradores de dicho repositorio.
+\subsubsection{Pull-Request}
+Cualquier usuario puede colaborar en proyectos públicos mediante la creación peticiones conocidas como Pull-Requests, que permiten que un usuario informe al dueño de un repositorio de los cambios que ha realizado para dicho repositorio.
+Para esto, un usuario externo a un repositorio crea un fork del mismo, crea una nueva rama dentro de ese fork para llevar a cabo las modificaciones y, una vez realizado los commits y push, puede crear la Pull-Request.
+Durante la creación de una Pull-Request se le da un nombre y una descripción a la misma y se tiene la posibilidad de visualizar y revisar los commits incluidos junto a las diferencias entre el código del repositorio original y el de la Pull-Request.
+Una vez creada una Pull-Request el usuario que la ha creado puede seguir realizando commits sobre la misma y además otros usuarios pueden participar en las modificaciones llevadas a cabo y sugerir cambios, añadir comentarios o realizar nuevos commits sobre la Pull-Request.
+Cuando el propietario del repositorio original esté de acuerdo con los cambios propuestos en la Pull-Request, puede aceptarla, fusionando así el contenido de la Pull-Request con el del repositorio original.
 
 \section{GitLab} 
 \label{sec:gitlab}
