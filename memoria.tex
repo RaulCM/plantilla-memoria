@@ -33,6 +33,8 @@
 \usepackage{hyperref}
 \usepackage{dirtree}
 \usepackage{makecell}
+\usepackage{pgfplots} 
+\usetikzlibrary{patterns}
 
 \title{Memoria del Proyecto}
 \author{Raúl Cano Montero}
@@ -732,8 +734,8 @@ Una vez terminada la colocación de los placeholders para todo el código, se vu
     C0321 & multiple-statements & \makecell[l]{More than one statement on a single line. Used when\\more than on statement are found on the same line.} \\ \hline
     C0326 & bad-whitespace & \makecell[l]{\%s space \%s \%s \%s. Used when a wrong number of spaces\\is used around an operator, bracket or block opener.} \\ \hline
     C0410 & multiple-imports & \makecell[l]{Multiple imports on one line (\%s). Used when import\\statement importing multiple modules is detected.} \\ \hline
-    C0411 & wrong-import-order & \makecell[l]{\%s should be placed before \%s. Used when PEP8\\import order is not respected (standard imports first, then\\third-party libraries, then local imports)} \\ \hline
-    C0413 & wrong-import-position & \makecell[l]{Import "\%s" should be placed at the top of the\\module. Used when code and imports are mixed} \\ \hline
+    C0411 & wrong-import-order & \makecell[l]{\%s should be placed before \%s. Used when PEP8\\import order is not respected (standard imports first, then\\third-party libraries, then local imports).} \\ \hline
+    C0413 & wrong-import-position & \makecell[l]{Import "\%s" should be placed at the top of the\\module. Used when code and imports are mixed.} \\ \hline
     W0404 & reimported & \makecell[l]{Reimport \%r (imported line \%s). Used when a module\\is reimported multiple times.} \\ \hline
     W0611 & unused-import & \makecell[l]{Unused \%s. Used when an imported module or\\variable is not used.} \\ \hline
   \end{tabular}
@@ -841,6 +843,7 @@ En este proceso se recibe un mensaje de GitHub notificando que la autenticación
 
 Tras esta corrección y la creación de la Pull-Request de manera exitosa, se realiza el mismo proceso utilizando el proyecto con múltiples directorios y ficheros que se ha usado en la segunda parte de la sección~\ref{sec:tests_local}.
 Al finalizar el proceso se observa que se ha realizado la creación de la Pull-Request de manera adecuada, modificando correctamente todos los ficheros con extensión \textit{.py} y dejando intactos los que no tienen ninguna extensión.
+Por último, se prueba a aceptar una de las Pull-Requests y a cancelar la otra y se comprueba que la aplicación realiza la consulta a la API de GitHub para obtener el estado de las Pull-Requests y lo actualiza correctamente en la base de datos.
 
 Estos dos mismos experimentos se repiten utilizando un repositorio alojado en el GitLab de la ETSIT de la URJC en lugar de GitLab y, como en el caso anterior, ambas pruebas concluyen de manera satisfactoria.
 
@@ -857,10 +860,133 @@ Estas pruebas tienen el mismo resultado que al haber desplegado la aplicación D
 
 \cleardoublepage
 \chapter{Resultados}
-%TODO
-En este capítulo se incluyen los resultados de tu trabajo fin de grado.
 
-Si es una herramienta de análisis lo que has realizado, aquí puedes poner ejemplos de haberla utilizado para que se vea su utilidad.
+Una vez terminada la fase de pruebas, se borra el contenido de la base de datos para no mezclar los datos de las pruebas con los datos reales y se procede a utilizar la aplicación con repositorios reales alojados en GitHub.
+Para ello se escogen algunos proyectos correspondientes a la práctica final de la asignatura Servicios y Aplicaciones Telemáticas realizadas por compañeros de la carrera y se buscan proyectos Python en GitHub que tengan actividad reciente.
+
+Al introducir el primero de estos proyectos, debido a su tamaño, el tiempo de análisis con Pylint es superior al de las pruebas realizadas previamente y se produce un timeout ya que el servidor tarda más de treinta segundos en devolver una respuesta HTTP al cliente.
+
+Para solucionarlo se intenta cambiar el valor de dicho timeout, pero tras revisar la documentación de Heroku se observa que no es posible modificarlo.
+Por lo tanto, se procede a programar el análisis con Pylint como una tarea asíncrona con el servidor comprobando periódicamente si dicha tarea ha finalizado o no.
+Dicha solución se aplica también para la tarea de corrección de los errores detectados, ya que puede provocar el mismo fallo.
+
+Tras realizar estos cambios se vuelve a introducir el repositorio que ha provocado el fallo y se comprueba que el análisis y la corrección se llevan a cabo de manera satisfactoria y que se permite que el tiempo de los mismos sea superior a treinta segundos sin provocar un timeout.
+También se comprueba que la Pull-Request se ha generado correctamente y ha quedado abierta a la espera de que el propietario del repositorio la acepte o la cancele.
+
+Una vez realizadas diez Pull-Requests sobre repositorios de proyectos reales, se procede a analizar cuáles son los errores más corregidos y más detectados por la aplicación.
+
+En la figura~\ref{fig:errores_detectados} se puede observar una gráfica en la que se representa el número de errores detectados por la aplicación para los diez más frecuentes en los repositorios analizados.
+Entre estos diez errores más frecuentes se encuentran dos de los que son corregibles por la aplicación: \textit{C0326: bad-whitespace} y \textit{C0303: trailing-whitespace}.
+El resto de errores se encuentran junto a su ID y su mensaje de error en la tabla~\ref{tabla:errores_detectados}.
+
+Entre los errores detectados por la aplicación, el más repetido es \textit{C0326: bad-whitespace}, que además es corregible, habiendo sido detectado un total de 2541 veces.
+Los dos siguientes errores también superan las mil repeticiones totales para los diez análisis realizados. Estos errores son \textit{C0103: invalid-name}, repetido 1465 veces y \textit{C0116: missing-function-docstring}, con 1146 detecciones.
+El resto de errores detectados se encuentran por debajo de las 600 repeticiones.
+Para los diez análisis realizados, se han detectado 108 errores distintos, de los 349 posibles, con un recuento total de 9566 detecciones.
+\newline
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        symbolic y coords={
+        	redefined-outer-name,
+        	missing-module-docstring,
+        	bad-continuation,
+        	trailing-whitespace,
+        	no-member,
+        	mixed-indentation,
+        	bad-indentation,
+        	missing-function-docstring,
+        	invalid-name,
+        	bad-whitespace
+        	},
+        xmin = 0,
+        xmax = 3000,
+        xlabel={Número de detecciones},
+        width=12cm,height=8cm,
+        ytick=data
+        ]
+        \addplot[xbar,fill=blue] coordinates {
+          (2541,bad-whitespace)
+          (1465,invalid-name)
+          (1146,missing-function-docstring)
+          (535,bad-indentation)
+          (450,mixed-indentation)
+          (345,no-member)
+          (280,trailing-whitespace)
+          (278,bad-continuation)
+          (248,missing-module-docstring)
+          (199,redefined-outer-name)
+        };
+      \end{axis}
+    \end{tikzpicture}
+  \caption{Cantidad de detecciones por error.}\label{fig:errores_detectados}
+\end{figure}
+\newpage
+\begin{table}[h]
+ \begin{center}
+  \begin{tabular}{ | l | c | c |}
+    \hline
+    \textbf{Error ID} & \textbf{Error Name} & \textbf{Message} \\ \hline
+    C0103 & invalid-name & \makecell[l]{\%s name "\%s" doesn't conform to \%s. Used when the\\name doesn't conform to naming rules associated\\to its type (constant, variable, class...).} \\ \hline
+    C0116 & missing-function-docstring & \makecell[l]{Missing function or method docstring. Used when a\\function or method has no docstring.Some special\\methods like \_\_init\_\_ do not require a docstring.} \\ \hline
+    W0311 & bad-indentation & \makecell[l]{Bad indentation. Found \%s \%s, expected \%s. Used\\when an unexpected number of indentation's\\tabulations or spaces has been found.} \\ \hline
+    W0312 & mixed-indentation & \makecell[l]{Found indentation with \%ss instead of \%ss. Used\\when there are some mixed tabs and spaces in a module.} \\ \hline
+    E1101 & no-member & \makecell[l]{\%s \%r has no \%r member\%s. Used when a variable\\is accessed for an unexistent member.} \\ \hline
+    C0330 & bad-continuation & \makecell[l]{Wrong \%s indentation\%s\%s.} \\ \hline
+    C0114 & missing-module-docstring & \makecell[l]{Missing module docstring. Used when a module\\has no docstring.Empty modules do not require a\\docstring.} \\ \hline
+    W0621 & redefined-outer-name & \makecell[l]{Redefining name \%r from outer scope (line \%s).\\Used when a variable's name hides a name defined\\in the outer scope.} \\ \hline
+  \end{tabular}
+  \label{tabla:errores_detectados}
+  \caption{Errores detectados por Pylint corregibles por la aplicación.}
+ \end{center}
+\end{table}
+
+En la figura~\ref{fig:errores_corregidos} se puede observar una gráfica en la que se representa el número correcciones que se han llevado a cabo para cada uno de los errores que son corregibles por la aplicación.
+
+Los 9 errores corregibles por la aplicación han sido detectados y solucionados al menos una vez durante los 10 análisis realizados.
+Los dos errores más corregidos son los que ya aparecían en la lista de errores más detectados, con 2541 repeticiones para \textit{C0326: bad-whitespace} y 280 para \textit{C0303: trailing-whitespace}.
+Para los siguientes errores corregidos, \textit{C0321: multiple-statements} se ha repetido 190 veces, \textit{C0304: missing-final-newline} ha tenido 113 apariciones y \textit{W0611: unused-import} ha sido corregido 108 veces.
+Con menos de 100 correcciones se encuentran \textit{C0411: wrong-import-order}, con 84, y \textit{C0413: wrong-import-position}, que ha sido corregido 64 veces.
+Mientras que los dos errores con menos correcciones son \textit{W0404: reimported} y \textit{C0410: multiple-imports} con 9 y 7 correcciones cada uno respectivamente
+Estos 9 errores suman un total de 3396 correcciones para los 10 análisis que se han llevado a cabo.
+\newline
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        symbolic y coords={
+        	multiple-imports,
+        	reimported,
+        	wrong-import-position,
+        	wrong-import-order,
+        	unused-import,
+        	missing-final-newline,
+        	multiple-statements,
+        	trailing-whitespace,
+        	bad-whitespace
+        	},
+        xmin = 0,
+        xmax = 3000,
+        xlabel={Número de correcciones},
+        width=12cm,height=7cm,
+        ytick=data
+        ]
+        \addplot[xbar,fill=blue] coordinates {
+          (2541,bad-whitespace)
+          (280,trailing-whitespace)
+          (190,multiple-statements)
+          (113,missing-final-newline)
+          (108,unused-import)
+          (84,wrong-import-order)
+          (64,wrong-import-position)
+          (9,reimported)
+          (7,multiple-imports)
+        };
+      \end{axis}
+    \end{tikzpicture}
+  \caption{Cantidad de correcciones por error.}\label{fig:errores_corregidos}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
