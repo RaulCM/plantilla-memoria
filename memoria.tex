@@ -786,6 +786,8 @@ Para esta aplicación se especifica que se deben realizar las migraciones del mo
 El fichero \textit{requirements.txt} hace que Heroku identifique automáticamente la aplicación como una aplicación desarrollada en Python y en su interior se definen las dependencias, incluyendo la versión, que deben ser instaladas antes del arranque de la aplicación en Heroku.
 Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \textit{Django}, \textit{Pylint}, o \textit{requests}, entre otros.
 
+Además, para que Django funcione correctamente al desplegarse en Heroku, hay que realizar cambios dentro del código del proyeccto.
+El fichero \textit{settings.py} se modifica para que Django utilice la base de datos PostgreSQL proporcionada por Heroku y se modifica el fichero \textit{views.py} para que haga uso de las variables de configuración de Heroku, que contendrán datos como los token de GitHub y Gitlab.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -845,10 +847,7 @@ Estos dos mismos experimentos se repiten utilizando un repositorio alojado en el
 \section{Aplicación desplegada en Heroku}
 \label{sec:tests_heroku}
 
-Como última prueba, se realiza el despliegue de la aplicación en Heroku realizando las modificaciones necesarias para que funcione en dicho entorno.
-Se realizan cambios en el fichero \textit{settings.py} para que Django utilice la base de datos PostgreSQL proporcionada por Heroku y se modifica el fichero \textit{views.py} para que haga uso de las variables de configuración de Heroku, que contendrán datos como los token de GitHub y Gitlab.
-
-Una vez realizados los cambios para que la aplicación pueda ser desplegada y funcionar correctamente en Heroku, se repiten las pruebas utilizando repositorios con subdirectorios y múltiples ficheros alojados en GitHub y en el GitLab de la ETSIT de la URJC.
+Como última prueba, se realiza el despliegue de la aplicación en Heroku y se repiten las pruebas utilizando repositorios con subdirectorios y múltiples ficheros alojados en GitHub y en el GitLab de la ETSIT de la URJC.
 Estas pruebas tienen el mismo resultado que al haber desplegado la aplicación Django en local, por lo que se puede validar el funcionamiento correcto de la aplicación completa ya desplegada en Heroku y siendo accesible desde Internet, finalizando así las pruebas y tests ejecutados sobre la aplicación.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
