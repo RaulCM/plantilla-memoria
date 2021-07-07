@@ -213,6 +213,7 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 
 \cleardoublepage
 \chapter{Introducción}
+\label{chap:intro}
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 %TODO
@@ -297,19 +298,17 @@ Se puede utilizar para ofrecer el contenido de correos electrónicos, código, e
 
 \section{Estructura de la memoria}
 \label{sec:estructura}
-%TODO
-En esta sección se debería introducir la esctura de la memoria. 
 
-Así:
+La memoria está estructurada de la siguiente manera:
 
 \begin{itemize}
-  \item En el primer capítulo se hace una intro al proyecto.
-  
-  \item En el capítulo~\ref{chap:objetivos} (ojo, otra referencia automática) se muestran los objetivos del proyecto.
-  
-  \item A continuación se presenta el estado del arte en el capítulo~\ref{chap:estado}.
-  
-  \item \ldots
+  \item En el capítulo~\ref{chap:intro} se hace una introducción al proyecto.
+  \item En el capítulo~\ref{chap:objetivos} se muestran los objetivos generales y específicos del proyecto y la planificación temporal del mismo.
+  \item En el capítulo~\ref{chap:estado} se presenta el estado del arte, introduciendo las diferentes tecnologías usadas en el proyecto.
+  \item En el capítulo~\ref{chap:diseno} se describe de manera detallada el diseño del proyecto, profundizando en la arquitectura general y el diseño e implementación del servidor.
+  \item En el capítulo~\ref{chap:experimentos} se detallan las diferentes pruebas realizadas para probar el funcionamiento correcto de la aplicación durante diferentes etapas del desarrollo.
+  \item En el capítulo~\ref{chap:resultados} se explican los resultados obtenidos tras ejecutar la aplicación con proyectos reales. 
+  \item En el capítulo~\ref{chap:conclusiones} se presentan las conclusiones finales acerca del proyecto.
 \end{itemize}
 
 
@@ -549,6 +548,7 @@ Heroku~\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar a
 
 \cleardoublepage
 \chapter{Diseño e implementación}
+\label{chap:diseno}
 
 En este capítulo se describe de manera detallada el diseño y la implementación del proyecto.
 
@@ -798,6 +798,7 @@ El fichero \textit{settings.py} se modifica para que Django utilice la base de d
 
 \cleardoublepage
 \chapter{Experimentos y validación}
+\label{chap:experimentos}
 
 \section{Tests unitarios}
 \label{sec:tests_unitarios}
@@ -860,6 +861,7 @@ Estas pruebas tienen el mismo resultado que al haber desplegado la aplicación D
 
 \cleardoublepage
 \chapter{Resultados}
+\label{chap:resultados}
 
 Una vez terminada la fase de pruebas, se borra el contenido de la base de datos para no mezclar los datos de las pruebas con los datos reales y se procede a utilizar la aplicación con repositorios reales alojados en GitHub.
 Para ello se escogen algunos proyectos correspondientes a la práctica final de la asignatura Servicios y Aplicaciones Telemáticas realizadas por compañeros de la carrera y se buscan proyectos Python en GitHub que tengan actividad reciente.
@@ -1022,34 +1024,39 @@ Respecto a los objetivos específicos, el resultado para cada uno de ellos ha si
 
 En el desarrollo de este proyecto se han aplicado conocimientos adquiridos en las siguientes asignaturas:
 
-\begin{enumerate}
+\begin{itemize}
   \item \textbf{Fundamentos de la Programación}: Introducción a la programación, necesaria para poder entender las asignaturas de programación que se estudian más adelante.
   \item \textbf{Arquitectura de Redes de Ordenadores}: Esta asignatura introduce por primera vez los protocolos usados en las redes, como el protocolo HTTP, necesario para el funcionamiento de las aplicaciones web como la desarrollada en este proyecto.
   \item \textbf{Programación de Sistemas de Telecomunicación}: Se profundiza en el uso de protocolos, la programación de tareas asíncronas y se presenta la arquitectura cliente-servidor en la que se basa la aplicación.
   \item \textbf{Sistemas Operativos}: Asignatura que, entre otras cosas, explica el uso básico de Linux, necesario para el tratamiento de ficheros y ejecución de comandos del sistema operativo que realiza la aplicación.
-  \item \textbf{Servicios y Aplicaciones Telemáticas}: Asignatura base para el desarrollo de este proyecto. En ella se tiene el primer contacto con Python, HTML, CSS y Django, tecnologías en las que se basa la aplicación desarrollada.
-  \item \textbf{Ingeniería de Sistemas de Información}: Presenta el uso de las bases de datos y el lenguaje SQL y el despliegue de aplicaciones en Heroku.
+  \item \textbf{Servicios y Aplicaciones Telemáticas}: Asignatura base para el desarrollo de este proyecto. En ella se tiene el primer contacto con git, Python, HTML, CSS y Django, tecnologías en las que se basa la aplicación desarrollada. También se presenta la guía de estilo PEP8.
+  \item \textbf{Ingeniería de Sistemas de Información}: Presenta el uso de las bases de datos, el lenguaje SQL, los tests unitarios y el despliegue de aplicaciones en Heroku. También profundiza en el uso de git.
   \item \textbf{Desarrollo de Aplicaciones Telemáticas}: Se introduce JavaScript y jQuery y se muestra qué es una API y cómo comunicarse con ella.
-\end{enumerate}
+\end{itemize}
 
 \section{Lecciones aprendidas}
 \label{sec:lecciones_aprendidas}
 
-Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+De lo aprendido durante la elaboración del Trabajo de Fin de Grado se podría destacar lo siguiente:
 
-\begin{enumerate}
-  \item Aquí viene uno.
-  \item Aquí viene otro.
-\end{enumerate}
-
+\begin{itemize}
+  \item La profundización en Python y Django, que ha permitido añadir conocimientos a lo aprendido previamente durante las asigntaturas de la carrera.
+  \item La posibilidad de realizar Pull-Requests en GitHub y así poder sugerir modificaciones y colaborar en proyectos de otros usuarios.
+  \item GitLab. Desconocía la existencia de plataformas de almacenamiento de repositorios además de GitHub y que además permitía la creación de servidores privados en los que alojar los proyectos.
+  \item Cómo funcionan las APIs de GitHub y GitLab y su sistema de autenticación mediante token.
+\end{itemize}
 
 \section{Trabajos futuros}
 \label{sec:trabajos_futuros}
 
-Ningún proyecto ni software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
+Aunque cumpla los objetivos propuestos, este proyecto tiene la posibilidad de ser mejorado y ampliado en el futuro, algunas de estas posibles mejoras son las siguientes:
 
-Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
-
+\begin{itemize}
+  \item Añadir más errores corregibles por la aplicación. 
+  \item Mejorar la velocidad de corrección mediante la posibilidad de corregir los ficheros en paralelo en lugar de secuencialmente como se realiza ahora.
+  \item Añadir compatiblidad con el servidor público y global de Gitlab además de con otras plataformas de almacenamiento de repositorios como Bitbucket.
+  \item Despliegue en una plataforma sin las limitaciones producidas por Heroku actualmente.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
