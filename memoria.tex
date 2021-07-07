@@ -997,33 +997,40 @@ Estos 9 errores suman un total de 3396 correcciones para los 10 análisis que se
 \cleardoublepage
 \chapter{Conclusiones}
 \label{chap:conclusiones}
-%TODO
 
 \section{Consecución de objetivos}
 \label{sec:consecucion-objetivos}
 
-Esta sección es la sección espejo de las dos primeras del capítulo de objetivos, donde se planteaba el objetivo general y se elaboraban los específicos.
+Como se ha indicado en la sección~\ref{sec:objetivo-general}, el objetivo principal del proyecto era desarrollar una aplicación que analizase mediante Pylint repositorios de GitHub con código Python y corrigiera algunos de los errores encontrados en dicho código para cumplir con la guía de estilo PEP8 realizando finalmente Pull-Requests para sugerir al propietario del repositorio las modificaciones que se han llevado a cabo.
+Este objetivo principal se ha cumplido en su totalidad, la aplicación es capaz de analizar código Python almacenado en GitHub y corrige los 9 errores indicados en la tabla~\ref{tabla:errores} para, finalmente, subir estas modificaciones a GitHub mediante el uso de Pull-Requests.
 
-Es aquí donde hay que debatir qué se ha conseguido y qué no. 
-Cuando algo no se ha conseguido, se ha de justificar, en términos de qué problemas se han encontrado y qué medidas se han tomado para mitigar esos problemas.
-
-Y si has llegado hasta aquí, siempre es bueno pasarle el corrector ortográfico, que las erratas quedan fatal en la memoria final.
-Para eso, en Linux tenemos aspell, que se ejecuta de la siguiente manera desde la línea de \emph{shell}:
-
-\begin{verbatim}
-  aspell --lang=es_ES -c memoria.tex
-\end{verbatim}
+Respecto a los objetivos específicos, el resultado para cada uno de ellos ha sido el siguiente:
+\begin{itemize}
+	\item \textbf{Trabajar con proyectos reales}: Una vez finalizado el desarrollo de la aplicación, se ha podido probar su funcionamiento con proyectos reales.
+	\item \textbf{Aplicación web}: La aplicación ha sido desarrollada como una aplicación web mediante el uso de Django.
+	\item \textbf{Accesibilidad desde Internet}: Se ha logrado la accesibilidad desde Internet mediante el despliegue de la aplicación en Heroku.
+	Este despliegue tiene algunas limitaciones causadas por el uso de la versión gratuita de Heroku.
+	La principal limitación se encuentra en la base de datos que proporciona la plataforma, ya que no se permite que ésta contenga más de diez mil filas.
+	Otra limitación provocada por la versión gratuita de Heroku es la entrada en reposo de la aplicación pasado un determinado tiempo de inactividad.
+	Esto causa que si un usuario accede a la aplicación cuando se encuentra en reposo, deberá esperar unos segundos mientras la aplicación arranca para poder hacer uso de la misma.
+	\item \textbf{Compatibilidad con el servidor GitLab de la ETSIT}: La aplicación es totalmente compatible con el servidor GitLab de la ETSIT y permite realizar sobre sus repositorios las mismas acciones que sobre los repositorios de GitHub.
+	\item \textbf{Análisis de aceptación de las Pull-Requests}: La aplicación comprueba el estado de las Pull-Requests que se han realizado y lo actualiza en la base de datos para mostrarlo correctamente en las gráficas.
+\end{itemize}
 
 \section{Aplicación de lo aprendido}
 \label{sec:aplicacion}
 
-Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y comentar en un párrafo los conocimientos y habilidades puestos en práctica.
+En el desarrollo de este proyecto se han aplicado conocimientos adquiridos en las siguientes asignaturas:
 
 \begin{enumerate}
-  \item a
-  \item b
+  \item \textbf{Fundamentos de la Programación}: Introducción a la programación, necesaria para poder entender las asignaturas de programación que se estudian más adelante.
+  \item \textbf{Arquitectura de Redes de Ordenadores}: Esta asignatura introduce por primera vez los protocolos usados en las redes, como el protocolo HTTP, necesario para el funcionamiento de las aplicaciones web como la desarrollada en este proyecto.
+  \item \textbf{Programación de Sistemas de Telecomunicación}: Se profundiza en el uso de protocolos, la programación de tareas asíncronas y se presenta la arquitectura cliente-servidor en la que se basa la aplicación.
+  \item \textbf{Sistemas Operativos}: Asignatura que, entre otras cosas, explica el uso básico de Linux, necesario para el tratamiento de ficheros y ejecución de comandos del sistema operativo que realiza la aplicación.
+  \item \textbf{Servicios y Aplicaciones Telemáticas}: Asignatura base para el desarrollo de este proyecto. En ella se tiene el primer contacto con Python, HTML, CSS y Django, tecnologías en las que se basa la aplicación desarrollada.
+  \item \textbf{Ingeniería de Sistemas de Información}: Presenta el uso de las bases de datos y el lenguaje SQL y el despliegue de aplicaciones en Heroku.
+  \item \textbf{Desarrollo de Aplicaciones Telemáticas}: Se introduce JavaScript y jQuery y se muestra qué es una API y cómo comunicarse con ella.
 \end{enumerate}
-
 
 \section{Lecciones aprendidas}
 \label{sec:lecciones_aprendidas}
