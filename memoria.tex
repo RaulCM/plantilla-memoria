@@ -864,16 +864,16 @@ Estas pruebas tienen el mismo resultado que al haber desplegado la aplicación D
 Una vez terminada la fase de pruebas, se borra el contenido de la base de datos para no mezclar los datos de las pruebas con los datos reales y se procede a utilizar la aplicación con repositorios reales alojados en GitHub.
 Para ello se escogen algunos proyectos correspondientes a la práctica final de la asignatura Servicios y Aplicaciones Telemáticas realizadas por compañeros de la carrera y se buscan proyectos Python en GitHub que tengan actividad reciente.
 
-Al introducir el primero de estos proyectos, debido a su tamaño, el tiempo de análisis con Pylint es superior al de las pruebas realizadas previamente y se produce un timeout ya que el servidor tarda más de treinta segundos en devolver una respuesta HTTP al cliente.
+Al introducir el primero de estos proyectos, debido a su tamaño, el tiempo de análisis con Pylint es superior al de las pruebas realizadas previamente y se produce un \emph{timeout} ya que el servidor tarda más de treinta segundos en devolver una respuesta HTTP al cliente.
 
-Para solucionarlo se intenta cambiar el valor de dicho timeout, pero tras revisar la documentación de Heroku se observa que no es posible modificarlo.
+Para solucionarlo se intenta cambiar el valor de dicho \emph{timeout}, pero tras revisar la documentación de Heroku se observa que no es posible modificarlo.
 Por lo tanto, se procede a programar el análisis con Pylint como una tarea asíncrona con el servidor comprobando periódicamente si dicha tarea ha finalizado o no.
 Dicha solución se aplica también para la tarea de corrección de los errores detectados, ya que puede provocar el mismo fallo.
 
-Tras realizar estos cambios se vuelve a introducir el repositorio que ha provocado el fallo y se comprueba que el análisis y la corrección se llevan a cabo de manera satisfactoria y que se permite que el tiempo de los mismos sea superior a treinta segundos sin provocar un timeout.
+Tras realizar estos cambios se vuelve a introducir el repositorio que ha provocado el fallo y se comprueba que el análisis y la corrección se llevan a cabo de manera satisfactoria y que se permite que el tiempo de los mismos sea superior a treinta segundos sin provocar un \emph{timeout}.
 También se comprueba que la Pull-Request se ha generado correctamente y ha quedado abierta a la espera de que el propietario del repositorio la acepte o la cancele.
 
-Una vez realizadas diez Pull-Requests sobre repositorios de proyectos reales, se procede a analizar cuáles son los errores más corregidos y más detectados por la aplicación.
+Una vez realizados diez Pull-Requests sobre repositorios de proyectos reales, se procede a analizar cuáles son los errores más corregidos y más detectados por la aplicación.
 
 En la figura~\ref{fig:errores_detectados} se puede observar una gráfica en la que se representa el número de errores detectados por la aplicación para los diez más frecuentes en los repositorios analizados.
 Entre estos diez errores más frecuentes se encuentran dos de los que son corregibles por la aplicación: \textit{C0326: bad-whitespace} y \textit{C0303: trailing-whitespace}.
