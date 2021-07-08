@@ -212,6 +212,18 @@ The application has been developed in Python language and technologies such as D
 \label{chap:intro}
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
+Este documento contiene la memoria de mi trabajo de fin de grado de ingeniería en tecnologías de la telecomunicación.
+El proyecto consiste en la creación automática de Pull-Requests que aumenten el nivel de cumplimiento con la guía de estilo PEP8 de repositorios escritos Python que se encuentren alojados en GitHub.
+Para ello se desarrollará una aplicación que analice dicho código y posteriormente pueda corregirlo para aumentar dicho nivel de cumplimiento.
+
+La aplicación será de tipo web, desarrollada con Django y haciendo uso de tecnologías como Python, HTML, CSS o JavaScript, y será accesible desde Internet para que cualquier usuario pueda acceder a la aplicación y realizar el análisis y la corrección sobre los repositorios que quiera, por lo que se realizará un despliegue de la aplicación en Heroku.
+
+El análisis se ejecutará mediante la herramienta Pylint realizando un escaneo de todos los ficheros con extensión \textit{.py} y obteniendo la lista de errores indicados por Pylint.
+Algunos de estos errores serán corregibles por la aplicación, de manera que se pueda aumentar el nivel de cumplimiento indicado anteriormete.
+
+El código analizado por la aplicación estará almacenado en plataformas de almacenamiento de repositorios, como GitHub o GitLab, y las modificaciones realizadas serán subidas automáticamente al repositorio correspondiente mediante el uso de Pull-Requests.
+
+Además, la aplicación mostrará información sobre el número total de errores encontrados y corregidos en los repositorios que han sido analizados.
 
 
 \section{Estructura de la memoria}
