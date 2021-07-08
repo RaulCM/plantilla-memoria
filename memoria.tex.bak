@@ -33,6 +33,8 @@
 \usepackage{hyperref}
 \usepackage{dirtree}
 \usepackage{makecell}
+\usepackage{pgfplots} 
+\usetikzlibrary{patterns}
 
 \title{Memoria del Proyecto}
 \author{Raúl Cano Montero}
@@ -106,7 +108,7 @@ Creación Automática de Pull-Requests a partir de Resultados de Pylint
 \end{center}
 
 \vspace{1cm}
-La defensa del presente Proyecto Fin de Carrera se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2021, siendo calificada por el siguiente tribunal:
+La defensa del presente Proyecto Fin de Carrera se realizó el día \qquad$\;\,$ de julio de 2021, siendo calificada por el siguiente tribunal:
 
 
 \vspace{0.5cm}
@@ -128,7 +130,7 @@ y habiendo obtenido la siguiente calificación:
 
 \vspace{1cm}
 \begin{flushright}
-Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2021
+Fuenlabrada, a \qquad$\;\,$ de julio de 2021
 \end{flushright}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,18 +160,13 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 \chapter*{Resumen}
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
-%TODO
-Aquí viene un resumen del proyecto.
-Ha de constar de tres o cuatro párrafos, donde se presente de manera clara y concisa de qué va el proyecto. 
-Han de quedar respondidas las siguientes preguntas:
 
-\begin{itemize}
-  \item ¿De qué va este proyecto? ¿Cuál es su objetivo principal?
-  \item ¿Cómo se ha realizado? ¿Qué tecnologías están involucradas?
-  \item ¿En qué contexto se ha realizado el proyecto? ¿Es un proyecto dentro de un marco general?
-\end{itemize}
+El objetivo de este Trabajo de Fin de Grado es analizar proyectos realizados en lenguaje Python para evaluar el nivel de cumplimiento con la guía de estilo PEP8 y corregirlos para aumentar éste.
 
-Lo mejor es escribir el resumen al final.
+El proyecto se basa en el modelo de arquitectura cliente-servidor y se ha desarrollado como una aplicación web accesible desde Internet que permite a cualquier usuario evaluar el nivel de cumplimiento de sus proyectos con PEP8 mediante el análisis de repositorios alojados en GitHub.
+Algunos de los errores observados son corregibles por la aplicación y los cambios se suben al repositorio de GitHub mediante el uso de Pull-Requests.
+
+La aplicación ha sido desarrollada en lenguaje Python y se han usado tecnologías como Django, HTML, CSS, JavaScript o PostgreSQL.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Resumen en inglés
@@ -177,11 +174,12 @@ Lo mejor es escribir el resumen al final.
 \chapter*{Summary}
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
 \markboth{SUMMARY}{SUMMARY} % encabezado
-%TODO
-Here comes a translation of the ``Resumen'' into English. 
-Please, double check it for correct grammar and spelling.
-As it is the translation of the ``Resumen'', which is supposed to be written at the end, this as well should be filled out just before submitting.
+This Final Degree Project aims to analyze projects developed in Python in order to evaluate their compliace level with the style guide for Python known as PEP8 and correct their code to increase their compliance level.
 
+This project is based on the client-server model and has been developed as a web application accesible from the Internet that allows any user to evaluate the compliance level of their projects with PEP8 by analyzing repositories hosted on GitHub.
+Some of the detected errors are correctables by the application and the changes are committed and uploaded to the GitHub repository using Pull-Requests.
+
+The application has been developed in Python language and technologies such as Django, HTML, CSS, JavaScript or PostgreSQL have been used.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,103 +209,36 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 
 \cleardoublepage
 \chapter{Introducción}
+\label{chap:intro}
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
-%TODO
-En este capítulo se introduce el proyecto.
-Debería tener información general sobre el mismo, dando la información sobre el contexto en el que se ha desarrollado.
+Este documento contiene la memoria de mi trabajo de fin de grado de ingeniería en tecnologías de la telecomunicación.
+El proyecto consiste en la creación automática de Pull-Requests que aumenten el nivel de cumplimiento con la guía de estilo PEP8 de repositorios escritos Python que se encuentren alojados en GitHub.
+Para ello se desarrollará una aplicación que analice dicho código y posteriormente pueda corregirlo para aumentar dicho nivel de cumplimiento.
 
-No te olvides de echarle un ojo a la página con los cinco errores de escritura más frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
+La aplicación será de tipo web, desarrollada con Django y haciendo uso de tecnologías como Python, HTML, CSS o JavaScript, y será accesible desde Internet para que cualquier usuario pueda acceder a la aplicación y realizar el análisis y la corrección sobre los repositorios que quiera, por lo que se realizará un despliegue de la aplicación en Heroku.
 
-Aconsejo a todo el mundo que mire y se inspire en memorias pasadas.
-Las memorias de los proyectos que he llevado yo están (casi) todas almacenadas en mi web del GSyC\footnote{\url{https://gsyc.urjc.es/~grex/pfcs/}}.
+El análisis se ejecutará mediante la herramienta Pylint realizando un escaneo de todos los ficheros con extensión \textit{.py} y obteniendo la lista de errores indicados por Pylint.
+Algunos de estos errores serán corregibles por la aplicación, de manera que se pueda aumentar el nivel de cumplimiento indicado anteriormente.
 
-\section{Sección}
-\label{sec:seccion}
+El código analizado por la aplicación estará almacenado en plataformas de almacenamiento de repositorios, como GitHub o GitLab, y las modificaciones realizadas serán subidas automáticamente al repositorio correspondiente mediante el uso de Pull-Requests.
 
-Esto es una sección, que es una estructura menor que un capítulo. 
+Además, la aplicación mostrará información sobre el número total de errores encontrados y corregidos en los repositorios que han sido analizados.
 
-Por cierto, a veces me comentáis que no os compila por las tildes.
-Eso es un problema de codificación.
-Al guardar el archivo, guardad la codificación de ``ISO-Latin-1'' a ``UTF-8'' (o viceversa) y funcionará.
-
-\subsection{Estilo}
-\label{subsec:estilo}
-
-Recomiendo leer los consejos prácticos sobre escribir documentos científicos en \LaTeX \ de Diomidis Spinellis\footnote{\url{https://github.com/dspinellis/latex-advice}}.
-
-Lee sobre el uso de las comas\footnote{\url{http://narrativabreve.com/2015/02/opiniones-de-un-corrector-de-estilo-11-recetas-para-escribir-correctamente-la-coma.html}}. 
-Las comas en español no se ponen al tuntún.
-Y nunca, nunca entre el sujeto y el predicado (p.ej. en ``Yo, hago el TFG'' sobre la coma).
-La coma no debe separar el sujeto del predicado en una oración, pues se cortaría la secuencia natural del discurso.
-No se considera apropiado el uso de la llamada coma respiratoria o \emph{coma criminal}.
-Solamente se suele escribir una coma para marcar el lugar que queda cuando omitimos el verbo de una oración, pero es un caso que se da de manera muy infrecuente al escribir un texto científico (p.ej. ``El Real Madrid, campeón de Europa'').
-
-A continuación, viene una figura, la Figura~\ref{figura:foro_hilos}. 
-Observarás que el texto dentro de la referencia es el identificador de la figura (que se corresponden con el ``label'' dentro de la misma). 
-También habrás tomado nota de cómo se ponen las ``comillas dobles'' para que se muestren correctamente. 
-Nota que hay unas comillas de inicio (``) y otras de cierre (''), y que son diferentes.
-Volviendo a las referencias, nota que al compilar, la primera vez se crea un diccionario con las referencias, y en la segunda compilación se ``rellenan'' estas referencias. 
-Por eso hay que compilar dos veces tu memoria.
-Si no, no se crearán las referencias.
-
- \begin{figure}
-    \centering
-    \includegraphics[bb=0 0 800 600, width=12cm, keepaspectratio]{img/foro1}
-    \caption{Página con enlaces a hilos}
-    \label{figura:foro_hilos}
- \end{figure}
-
-A continuación un bloque ``verbatim'', que se utiliza para mostrar texto tal cual.
-Se puede utilizar para ofrecer el contenido de correos electrónicos, código, entre otras cosas.
-
-{\footnotesize
-\begin{verbatim}
-    From gaurav at gold-solutions.co.uk  Fri Jan 14 14:51:11 2005
-    From: gaurav at gold-solutions.co.uk (gaurav_gold)
-    Date: Fri Jan 14 19:25:51 2005
-    Subject: [Mailman-Users] mailman issues
-    Message-ID: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-
-    Dear Sir/Madam,
-    How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-    Thanks
-
-    From msapiro at value.net  Fri Jan 14 19:48:51 2005
-    From: msapiro at value.net (Mark Sapiro)
-    Date: Fri Jan 14 19:49:04 2005
-    Subject: [Mailman-Users] mailman issues
-    In-Reply-To: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-    Message-ID: <PC173020050114104851057801b04d55@msapiro>
-
-    gaurav_gold wrote:
-    >How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-
-    See the FAQ
-    >Mailman FAQ: http://www.python.org/cgi-bin/faqw-mm.py
-    article 3.11
-\end{verbatim}
-}
 
 \section{Estructura de la memoria}
 \label{sec:estructura}
-%TODO
-En esta sección se debería introducir la esctura de la memoria. 
 
-Así:
+La memoria está estructurada de la siguiente manera:
 
 \begin{itemize}
-  \item En el primer capítulo se hace una intro al proyecto.
-  
-  \item En el capítulo~\ref{chap:objetivos} (ojo, otra referencia automática) se muestran los objetivos del proyecto.
-  
-  \item A continuación se presenta el estado del arte en el capítulo~\ref{chap:estado}.
-  
-  \item \ldots
+  \item En el capítulo~\ref{chap:intro} se hace una introducción al proyecto.
+  \item En el capítulo~\ref{chap:objetivos} se muestran los objetivos generales y específicos del proyecto y la planificación temporal del mismo.
+  \item En el capítulo~\ref{chap:estado} se presenta el estado del arte, introduciendo las diferentes tecnologías usadas en el proyecto.
+  \item En el capítulo~\ref{chap:diseno} se describe de manera detallada el diseño del proyecto, profundizando en la arquitectura general y el diseño e implementación del servidor.
+  \item En el capítulo~\ref{chap:experimentos} se detallan las diferentes pruebas realizadas para probar el funcionamiento correcto de la aplicación durante diferentes etapas del desarrollo.
+  \item En el capítulo~\ref{chap:resultados} se explican los resultados obtenidos tras ejecutar la aplicación con proyectos reales. 
+  \item En el capítulo~\ref{chap:conclusiones} se presentan las conclusiones finales acerca del proyecto.
 \end{itemize}
 
 
@@ -334,7 +265,7 @@ Para poder cumplir con el objetivo general se han tenido en cuenta los siguiente
 \begin{itemize}
 	\item \textbf{Trabajar con proyectos reales.} Utilizar la aplicación para analizar y corregir proyectos reales.
 	\item \textbf{Aplicación web.} Desarrollar como una aplicación web para hacer mejor y más sencilla la experiencia de usuario.
-	\item \textbf{Accesibilidad desde internet.} Hacer que la aplicación esté en funcionamiento continuamente y sea accesible desde cualquier ubicación.
+	\item \textbf{Accesibilidad desde Internet.} Hacer que la aplicación esté en funcionamiento continuamente y sea accesible desde cualquier ubicación.
 	\item \textbf{Compatibilidad con el servidor GitLab de la ETSIT.} Hacer que la aplicación sea compatible con el GitLab de la ETSIT para permitir que los alumnos de la escuela puedan analizar y corregir sus proyectos.
 	\item \textbf{Análisis de aceptación de las Pull-Requests.} Evaluar la aceptación de los cambios realizados en los proyectos mediante el análisis del estado de las Pull-Requests realizadas.
 \end{itemize}
@@ -361,19 +292,19 @@ En este capítulo se describen brevemente las principales tecnologías utilizada
 
 \section{Python} 
 \label{sec:python}
-Python \cite{python} es un lenguaje de programación Open Source escrito por Guido van Rossum entre finales de los años 80 y principio de los 90. El objetivo de la creación de Python era tener un lenguaje de programación con una sintaxis sencilla, como ABC, añadiendo la posibilidad de realizar llamadas al sistema con compatibilidad con distintos sistemas operativos.
+Python \cite{python} es un lenguaje de programación Open Source escrito por Guido van Rossum entre finales de los años 80 y principios de los 90. El objetivo de la creación de Python era tener un lenguaje de programación con una sintaxis sencilla, como el lenguaje ABC en el que se inspira, añadiendo la posibilidad de realizar llamadas al sistema con compatibilidad con distintos sistemas operativos.
 
-Es un lenguaje de programación interpretado, interactivo y orientado a objetos. Al ser un lenguaje interpretado se reduce el tiempo entre la escritura del código y la ejecución del mismo, ya que no hay que compilarlo cada vez que se realice una modificación del código. Sin embargo, ésto implica que sea necesaria la instalación de un intérprete en la máquina que va a ejecutar el código y aumenta el tiempo de la ejecución respecto a los lenguajes compilados.
+Python es un lenguaje de programación interpretado, interactivo y orientado a objetos. Al ser un lenguaje interpretado se reduce el tiempo entre la escritura del código y la ejecución del mismo, ya que no hay que compilarlo cada vez que se realice una modificación del código. Sin embargo, ésto implica que sea necesaria la instalación de un intérprete en la máquina que va a ejecutar el código y aumenta el tiempo de la ejecución respecto a los lenguajes compilados.
 
 Python incorpora módulos, excepciones, tipado dinámico, tipos de datos dinámicos de muy alto nivel y clases. La librería estándar de Python le permite cubrir distintas áreas, como el procesamiento de cadenas de texto, protocolos de red, ingeniería del software e interacción con el sistema operativo.
 
 Además de la programación orientada a objetos, soporta múltiples paradigmas de programación como la programación procedimental y la programación funcional y también es compatible con diversos sistemas operativos, incluyendo Windows y múltiples variantes de Unix, como Linux y macOS.
 
-Actualmente Python es uno de los lenguajes de programación más utilizados.\cite{stackoverflowsurvey}
+Actualmente Python es uno de los lenguajes de programación más utilizados~\cite{stackoverflowsurvey}.
 
 \section{PEP 8} 
 \label{sec:pep8}
-Python Enhancement Proposal 8, más conocida como PEP 8\cite{pep8}, es una guía de estilo para código escrito en Python que contiene recomendaciones y convenciones dirigidas a mejorar la consistencia y legibilidad del código.
+Python Enhancement Proposal 8, más conocida como PEP 8~\cite{pep8}, es una guía de estilo para código escrito en Python que contiene recomendaciones y convenciones dirigidas a mejorar la consistencia y legibilidad del código.
 Algunas de las convenciones indicadas por PEP 8 son las siguientes:
 \begin{itemize}
 	\item \textbf{Tabulación}: Se debe tabular utilizando 4 espacios por cada nivel de tabulación.
@@ -392,9 +323,59 @@ PEP 8 también nos indica que las distintas normas pueden ser ignoradas en deter
 
 \section{Pylint} 
 \label{sec:pylint}
-Pylint \cite{pylint} es una herramienta de análisis de código escrito en Python que comprueba si hay incumplimiento de la guía de estilo PEP 8. Es un analizador de código estático, lo que facilita el análisis del código ya que se realiza sin tener que ejecutarlo.
+Pylint~\cite{pylint} es una herramienta de análisis de código escrito en Python que comprueba si hay incumplimiento de la guía de estilo PEP 8. Es un analizador de código estático, lo que facilita el análisis del código ya que se realiza sin tener que ejecutarlo.
 
-La salida de Pylint muestra para cada error detectado en qué fichero, línea y columna se ha encontrado y, al final de la salida, una calificación del código analizado en función de los errores que se han detectado. El formato de esta salida y las opciones del análisis, como los errores que deben buscarse o los ficheros que deben analizarse, son configurables mediante argumentos introducidos al ejecutar la herramienta o mediante un fichero de configuración llamado pylintrc.
+Pylint identifica los errores mediante mensajes a los que se les asigna una letra seguida de un código numérico, cada letra especifica un tipo de mensaje:
+\begin{itemize}
+	\item \textbf{I}: Mensajes informativos. No penalizan en la calificación emitida el final de análisis.
+	\item \textbf{R}: Refactorizaciones para solucionar errores en la métrica.
+	\item \textbf{C}: Convenciones para violaciones estándar del código.
+	\item \textbf{W}: Warnings o advertencias causadas por problemas de estilo o problemas menores de programación.
+	\item \textbf{E}: Errores debidos a problemas importantes de programación.
+	\item \textbf{F}: Errores fatales que impiden continuar con el proceso.
+\end{itemize}
+
+La salida de Pylint puede ser configurada mediante argumentos en el momento de ejecución o mediante un fichero de configuración llamado \textit{pylintrc}.
+Dicha salida se divide en 3 secciones: análisis del código fuente, informes y calificación.
+
+\subsubsection{Análisis del código fuente}
+
+Primera y principal sección de la salida de Pylint. Muestra los errores que Pylint ha encontrado al analizar todas las líneas del código.
+Por defecto, para cada error detectado indica el tipo correspondiente, en qué línea y columna se ha encontrado y el mensaje correspondiente a dicho error.
+Esta salida es configurable mediante un template, permitiendo mostrar los siguientes elementos a la información de cada error detectado:
+\begin{itemize}
+	\item \textit{path}: Ruta relativa del fichero analizado.
+	\item \textit{abspath}: Ruta absoluta del fichero analizado.
+	\item \textit{line}: Número de línea.
+	\item \textit{column}: Número de columna.
+	\item \textit{module}: Nombre del módulo.
+	\item \textit{obj}: Nombre del objeto dentro del módulo (si corresponde).
+	\item \textit{msg}: Texto del mensaje.
+	\item \textit{msg\_id}: Código del mensaje.
+	\item \textit{symbol}: Nombre del mensaje.
+	\item \textit{C}: Letra identificativa de la categoría del mensaje.
+	\item \textit{category}: Nombre completo de la categoría del mensaje.
+\end{itemize} 
+
+\subsubsection{Informes}
+
+Segunda sección de la salida de Pylint. 
+Por defecto, muestra un conjunto de informes acerca de distintos aspectos del código analizado, pero puede ser desactivado mediante un argumento en el momento de ejecutar el análisis.
+Los informes mostrados son los siguientes:
+\begin{itemize}
+	\item Numero de módulos analizados.
+	\item Para cada módulo, porcentaje de errores y warnings.
+	\item Número total de errores y warnings.
+	\item Porcentaje de clases, funciones y módulos que incluyen docstrings y comparación con la ejecución previa del análisis.
+	\item Porcentaje de clases, funciones y módulos con un nombre correcto según el estándar y una comparación con la ejecución previa del análisis.
+	\item Lista de dependencias externas encontradas en el código y dónde aparecen.
+\end{itemize}
+
+\subsubsection{Calificación}
+
+Tercera y última sección de la salida de Pylint.
+Muestra una calificación global, siendo 10.0 el máximo, para el código analizado y lo compara con la calificación obtenida en la ejecución previa del añalisis.
+Al igual que los informes, puede ser desactivado mediante un argumento en el momento de ejecutar el análisis.
 
 \section{Django} 
 \label{sec:django}
@@ -408,18 +389,18 @@ Django\cite{django} es un framework de desarrollo de aplicaciones web de código
 \section{PostgreSQL} 
 \label{sec:postgresql}
 
-PostgreSQL\cite{postgresql} es un sistema de gestión de bases de datos relacionales de código abierto basado en POSTGRES. PostgreSQL es compatible con gran parte del estándar SQL, añade algunas características propias, como el control de concurrencias multiversión o la compatibilidad con consultas complejas, y permite al usuario añadir nuevos tipos de datos, funciones u operadores.
+PostgreSQL~\cite{postgresql} es un sistema de gestión de bases de datos relacionales de código abierto basado en POSTGRES. PostgreSQL es compatible con gran parte del estándar SQL, añade algunas características propias, como el control de concurrencias multiversión o la compatibilidad con consultas complejas, y permite al usuario añadir nuevos tipos de datos, funciones u operadores.
 
 \section{HTML} 
 \label{sec:html}
 
-HTML (Hypertext Markup Language)\cite{htmlcss} es el lenguaje de marcado estándar para la creación de páginas web. Este estándar está a cargo del World Wide Web Consortium (W3C) y es compatible con todos los navegadores web.
+HTML (Hypertext Markup Language)~\cite{htmlcss} es el lenguaje de marcado estándar para la creación de páginas web. Este estándar está a cargo del World Wide Web Consortium (W3C) y es compatible con todos los navegadores web.
 Con HTML se define la estructura de las páginas web mediante la utilización de distintas etiquetas.
 
 \section{CSS} 
 \label{sec:css}
 
-CSS (Cascading Style Sheets)\cite{htmlcss} es un lenguaje de diseño web utilizado para definir la apariencia y el estilo visual de una página web. Al igual que HTML, es un estándar a cargo del World Wide Web Consortium (W3C).
+CSS (Cascading Style Sheets)~\cite{htmlcss} es un lenguaje de diseño web utilizado para definir la apariencia y el estilo visual de una página web. Al igual que HTML, es un estándar a cargo del World Wide Web Consortium (W3C).
 CSS establece cómo se muestran los elementos declarados en un documento HTML definiendo propiedades como los colores, fuentes y diseño. Para ello CSS hace uso de reglas, formadas por selectores, que indican sobre qué elementos HTML se aplican, y declaraciones, que definen y modifican las propiedades.
 CSS es independiente de HTML y se puede llevar a cabo desde un fichero separado, lo que facilita el mantenimiento y la reutilización de las hojas de estilo.
 
@@ -427,30 +408,30 @@ CSS es independiente de HTML y se puede llevar a cabo desde un fichero separado,
 \section{Bootstrap} 
 \label{sec:bootstrap}
 
-Bootstrap\cite{bootstrap} es un framework de código abierto dirigido al desarrollo front-end de páginas web. Es una biblioteca que contiene herramientas HTML, CSS y JavaScript que facilitan el diseño y ayudan a realizar modificaciones de manera más sencilla en el estilo visual. Bootstrap contiene plantillas predefinidas con diferentes estilos de botones, formularios, desplegables o pestañas, entre otros componentes. Una de las características más importantes de Bootstrap es que también aporta el diseño responsive, que adapta automáticamente la presentación de la página web a diferentes tipos de dispositivos teniendo en cuenta el tamaño de pantalla y la resolución, lo que facilita la visualización y aumenta la compatibilidad de las páginas web.
+Bootstrap~\cite{bootstrap} es un framework de código abierto dirigido al desarrollo front-end de páginas web. Es una biblioteca que contiene herramientas HTML, CSS y JavaScript que facilitan el diseño y ayudan a realizar modificaciones de manera más sencilla en el estilo visual. Bootstrap contiene plantillas predefinidas con diferentes estilos de botones, formularios, desplegables o pestañas, entre otros componentes. Una de las características más importantes de Bootstrap es que también aporta el diseño responsive, que adapta automáticamente la presentación de la página web a diferentes tipos de dispositivos teniendo en cuenta el tamaño de pantalla y la resolución, lo que facilita la visualización y aumenta la compatibilidad de las páginas web.
 
 \section{JavaScript} 
 \label{sec:javascript}
 
-JavaScript\cite{javascript} es un lenguaje de programación interpretado, orientado a objetos, imperativo, multiparadigma, de tipado débil y dinámico y basado en prototipos. Tiene una sintaxis inspirada en la de Java y C++, con sentencias que funcionan igual que en esos lenguajes.
+JavaScript~\cite{javascript} es un lenguaje de programación interpretado, orientado a objetos, imperativo, multiparadigma, de tipado débil y dinámico y basado en prototipos. Tiene una sintaxis inspirada en la de Java y C++, con sentencias que funcionan igual que en esos lenguajes.
 Su uso principal es el scripting en páginas web dirigido a establecer el comportamiento de éstas al suceder un evento determinado. La ejecución de estos scripts se realiza en el lado del cliente, en el navegador web, sin tener acceso al lado del servidor.
-El uso de JavaScript está ampliamente extendidao debido a que es compatible con cualquier navegador y sistema operativo.
+El uso de JavaScript está ampliamente extendido debido a que es compatible con cualquier navegador y sistema operativo.
 
 \section{jQuery} 
 \label{sec:jquery}
 
-jQuery\cite{jquery} es una librería de JavaScript de código abierto que simplifica la interacción entre JavaScript y HTML. jQuery facilita la manipulación del HTML, el manejo de eventos, el desarrollo de animaciones y el uso de AJAX y es compatible con cualquier navegador web y sistema operativo actual.
+jQuery~\cite{jquery} es una librería de JavaScript de código abierto que simplifica la interacción entre JavaScript y HTML. jQuery facilita la manipulación del HTML, el manejo de eventos, el desarrollo de animaciones y el uso de AJAX y es compatible con cualquier navegador web y sistema operativo actual.
 
 \section{Chart.js} 
 \label{sec:chartjs}
 
-Chart.js\cite{chartjs} es una librería de JavaScript de código abierto dirigida a la representación y visualización de datos. Permite generar gráficos de distintos tipos, como barras, líneas, circulares o de dispersión, entre otros, y personalizar cómo se muestran dichos gráficos.
+Chart.js~\cite{chartjs} es una librería de JavaScript de código abierto dirigida a la representación y visualización de datos. Permite generar gráficos de distintos tipos, como barras, líneas, circulares o de dispersión, entre otros, y personalizar cómo se muestran dichos gráficos.
 Actualmente es una de las librerías de visualización de datos en JavaScript más populares en GitHub.
 
 \section{JSON} 
 \label{sec:json}
 
-JSON\cite{json} (JavaScript Object Notation) es un formato de intercambio de datos fácil de leer y escribir para humanos y fácil de generar e interpretar para las máquinas. Como su nombre indica, está basado en la sintaxis de objetos de JavaScript, teniendo una estructura formada por pares de nombre/valor.
+JSON~\cite{json} (JavaScript Object Notation) es un formato de intercambio de datos fácil de leer y escribir para humanos y fácil de generar e interpretar para las máquinas. Como su nombre indica, está basado en la sintaxis de objetos de JavaScript, teniendo una estructura formada por pares de nombre/valor.
 JSON es independiente de cualquier lenguaje y, por ello, es compatible con la gran mayoría de los lenguajes de programación actuales.
 
 \section{API-REST} 
@@ -458,7 +439,7 @@ JSON es independiente de cualquier lenguaje y, por ello, es compatible con la gr
 
 Una API (Application Programming Interface) es un conjunto de instrucciones y protocolos ofrecidos por determinadas aplicaciones para dar acceso a su propia información o funciones. La API actúa como intermediario entre la propia aplicación y el solicitante y devuelve a éste último una respuesta con el resultado de la operación realizada o con la información solicitada.
 
-Una API-REST es un tipo de API en el que el acceso está basado en arquitectura REST (Representational State Transfer), por lo que las llamadas a dicha API se llevan a cabo mediante peticiones HTTP y el uso de objetos XML o JSON.
+Una API REST es un tipo de API en el que el acceso está basado en arquitectura REST (Representational State Transfer), por lo que las llamadas a dicha API se llevan a cabo mediante peticiones HTTP y el uso de objetos XML o JSON.
 
 \section{Git} 
 \label{sec:git}
@@ -471,20 +452,24 @@ El funcionamiento de Git se basa en la creación, uso y mezcla de ramas dentro d
 \section{GitHub} 
 \label{sec:github}
 
-GitHub\cite{github} es un servicio web, propiedad de Microsoft, que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Permite la creación de repositorios públicos, que podrán ser vistos y descargados por cualquier usuario, y repositorios privados, que únicamente serán visibles por los colaboradores de dicho repositorio.
-Cualquier usuario puede colaborar en proyectos públicos mediante la creación de Pull-Requests. De esta manera un usuario externo al proyecto puede sugerir al propietario de un repositorio que realice los cambios indicados en un proyecto, mientras que el usuario propietario puede decidir aceptar o no las modificaciones realizadas.
-Es la plataforma de almacenamiento de repositorios más usada.
+GitHub~\cite{github} es un servicio web, propiedad de Microsoft, que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git, siendo actualmente la plataforma de almacenamiento de repositorios más usada. Permite la creación de repositorios públicos, que podrán ser vistos y descargados por cualquier usuario, y repositorios privados, que únicamente serán visibles por los colaboradores de dicho repositorio.
+\subsubsection{Pull-Request}
+Cualquier usuario puede colaborar en proyectos públicos mediante la creación peticiones conocidas como Pull-Requests, que permiten que un usuario informe al dueño de un repositorio de los cambios que ha realizado para dicho repositorio.
+Para esto, un usuario externo a un repositorio crea un fork del mismo, crea una nueva rama dentro de ese fork para llevar a cabo las modificaciones y, una vez realizado los commits y push, puede crear la Pull-Request.
+Durante la creación de una Pull-Request se le da un nombre y una descripción a la misma y se tiene la posibilidad de visualizar y revisar los commits incluidos junto a las diferencias entre el código del repositorio original y el de la Pull-Request.
+Una vez creada una Pull-Request el usuario que la ha creado puede seguir realizando commits sobre la misma y además otros usuarios pueden participar en las modificaciones llevadas a cabo y sugerir cambios, añadir comentarios o realizar nuevos commits sobre la Pull-Request.
+Cuando el propietario del repositorio original esté de acuerdo con los cambios propuestos en la Pull-Request, puede aceptarla, haciendo \textit{merge} y fusionando así el contenido de la Pull-Request con el del repositorio original.
 
 \section{GitLab} 
 \label{sec:gitlab}
 
-GitLab\cite{gitlab} es un servicio web de código abierto que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Al igual que GitHub, permite la creación de repositorios públicos y privados y tiene un sistema de Pull-Requests que, en este caso, se denominan Merge-Requests.
+GitLab~\cite{gitlab} es un servicio web de código abierto que almacena repositorios de proyectos de desarrollo software que utilizan el sistema de control de versiones Git. Al igual que GitHub, permite la creación de repositorios públicos y privados y tiene un sistema de Pull-Requests que, en este caso, se denominan Merge-Requests.
 GitLab permite la instalación en un servidor privado para no hacer uso de la plataforma pública que se encuentra abierta a todo el mundo.
 
 \section{Heroku} 
 \label{sec:Heroku}
 
-Heroku\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar aplicaciones en la nube. Es compatible con aplicaciones desarrolladas en Node.js, Ruby, Python, Java, PHP, Go, Scala y Clojure y con bases de datos PostgreSQL, MongoDB y Redis.
+Heroku~\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar aplicaciones en la nube. Es compatible con aplicaciones desarrolladas en Node.js, Ruby, Python, Java, PHP, Go, Scala y Clojure y con bases de datos PostgreSQL, MongoDB y Redis.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -493,6 +478,7 @@ Heroku\cite{heroku} es una plataforma como servicio (PaaS) que permite alojar ap
 
 \cleardoublepage
 \chapter{Diseño e implementación}
+\label{chap:diseno}
 
 En este capítulo se describe de manera detallada el diseño y la implementación del proyecto.
 
@@ -678,8 +664,8 @@ Una vez terminada la colocación de los placeholders para todo el código, se vu
     C0321 & multiple-statements & \makecell[l]{More than one statement on a single line. Used when\\more than on statement are found on the same line.} \\ \hline
     C0326 & bad-whitespace & \makecell[l]{\%s space \%s \%s \%s. Used when a wrong number of spaces\\is used around an operator, bracket or block opener.} \\ \hline
     C0410 & multiple-imports & \makecell[l]{Multiple imports on one line (\%s). Used when import\\statement importing multiple modules is detected.} \\ \hline
-    C0411 & wrong-import-order & \makecell[l]{\%s should be placed before \%s. Used when PEP8\\import order is not respected (standard imports first, then\\third-party libraries, then local imports)} \\ \hline
-    C0413 & wrong-import-position & \makecell[l]{Import "\%s" should be placed at the top of the\\module. Used when code and imports are mixed} \\ \hline
+    C0411 & wrong-import-order & \makecell[l]{\%s should be placed before \%s. Used when PEP8\\import order is not respected (standard imports first, then\\third-party libraries, then local imports).} \\ \hline
+    C0413 & wrong-import-position & \makecell[l]{Import "\%s" should be placed at the top of the\\module. Used when code and imports are mixed.} \\ \hline
     W0404 & reimported & \makecell[l]{Reimport \%r (imported line \%s). Used when a module\\is reimported multiple times.} \\ \hline
     W0611 & unused-import & \makecell[l]{Unused \%s. Used when an imported module or\\variable is not used.} \\ \hline
   \end{tabular}
@@ -732,6 +718,8 @@ Para esta aplicación se especifica que se deben realizar las migraciones del mo
 El fichero \textit{requirements.txt} hace que Heroku identifique automáticamente la aplicación como una aplicación desarrollada en Python y en su interior se definen las dependencias, incluyendo la versión, que deben ser instaladas antes del arranque de la aplicación en Heroku.
 Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \textit{Django}, \textit{Pylint}, o \textit{requests}, entre otros.
 
+Además, para que Django funcione correctamente al desplegarse en Heroku, hay que realizar cambios dentro del código del proyeccto.
+El fichero \textit{settings.py} se modifica para que Django utilice la base de datos PostgreSQL proporcionada por Heroku y se modifica el fichero \textit{views.py} para que haga uso de las variables de configuración de Heroku, que contendrán datos como los token de GitHub y Gitlab.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -740,19 +728,61 @@ Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \t
 
 \cleardoublepage
 \chapter{Experimentos y validación}
+\label{chap:experimentos}
 
 \section{Tests unitarios}
-\label{sec:tests}
+\label{sec:tests_unitarios}
+
 Para comenzar las pruebas del correcto funcionamiento de la aplicación se ha hecho uso de la herramienta de tests unitarios incluida en Django.
-Dichos tests unitarios se encuentran en el fichero \textit{/analyzerapp/tests.py} y están diseñados para comprobar que las funciones correspondientes a cada error son capaces de situar correctamente el placeholder indicado en las líneas afectadas y que las funciones que corrigen los errores al encontrar un placeholder son capaces de hacerlo correctamente.
+Dichos tests unitarios se encuentran en el fichero \textit{/analyzerapp/tests.py} y están diseñados para comprobar que las funciones correspondientes a cada error son capaces de situar correctamente el placeholder indicado en las líneas afectadas, y que las funciones que corrigen los errores al encontrar un placeholder son capaces de hacerlo correctamente.
 \begin{figure}[h]
   \centering
   \includegraphics[width=10cm, keepaspectratio]{img/tests.png}
   \caption{Salida de la ejecución de los tests unitarios en Django.}\label{fig:tests}
 \end{figure}
 
-La salida de la ejecución de los tests unitarios desde el propio Django puede ser observada en la figura~\ref{fig:tests}. En ella se refleja que la ejecución de los tests unitarios es exitosa tanto para los 9 tests correspondientes a las funciones que añaden los placehoolders, como para los 4 tests correspondientes a la corrección de los errores y borrado de los placeholders.
+La salida de la ejecución de los tests unitarios desde el propio Django puede ser observada en la figura~\ref{fig:tests}. En ella se refleja que la ejecución de los tests unitarios es exitosa tanto para los nueve tests correspondientes a las funciones que añaden los placeholders, como para los cuatro tests correspondientes a la corrección de los errores y borrado de los placeholders.
 
+\section{Análisis y corrección de proyectos en local}
+\label{sec:tests_local}
+
+Tras comprobar el correcto funcionamiento de las funciones de corrección de errores mediante los tests unitarios, el siguiente paso ha sido realizar pruebas con proyectos en local para comprobar que se realiza correctamente tanto el análisis con Pylint como la corrección de los errores detectados.
+En estas primeras pruebas no se ha ejecutado la aplicación utilizando Django, se ha creado un script con el contenido de las funciones del fichero \textit{views.py} y se ha ejecutado el análisis y la corrección ejecutando dicho script.
+
+El primer paso ha sido realizar las pruebas con un único fichero, para ello se ha creado dos ficheros con las mismas sentencias de Python.
+El primero de ellos contiene errores corregibles por la aplicación, mientras que el segundo de ellos cumple con todas las normas de estilo que indican los errores que la aplicación es capaz de corregir.
+
+Es durante esta prueba cuando se observa que, al realizar las correcciones del código al mismo tiempo que se recorre el fichero con la salida de Pylint, algunas sentencias pueden sufrir cambios en su número de línea, lo que puede provocar que se realicen modificaciones en las líneas equivocadas y el fichero no pueda ejecutarse por errores de sintaxis.
+Para solucionar este problema se toma la decisión de no realizar acciones que puedan cambiar los números de línea de ninguna sentencia mientras se lee la salida de Pylint y, para ello, únicamente se llevará a cabo la colocación de placeholders durante esta lectura.
+Estos placeholders indican qué acción hay que realizar sobre la línea en la que se encuentran y, si fuese necesario, un número indicando en qué posición de la línea se encuentra el problema.
+Al terminar de situar los placeholders en el fichero se vuelve a recorrer el mismo buscando dichos placeholders y realizando la acción correspondiente para corregir el error.
+
+Tras solventar dicho problema, se procede a ejecutar la aplicación sobre el fichero que contiene los errores y se observa que ambos fichero son totalmente idénticos, por lo que se confirma que la aplicación ha funcionado correctamente al ser ejecutada sobre un único fichero con errores.
+
+Después de comprobar que el análisis y la corrección sobre un único fichero ha tenido éxito, el siguiente paso es realizarlo sobre un proyecto que contenga distintos directorios y ficheros, incluyendo tanto ficheros con extensión \textit{.py} como ficheros con otras extensiones o sin extensión.
+Para ello se han creado copias del fichero inicial que contenía los errores y se han distribuido en diferentes directorios dentro de un mismo proyecto realizando cambios en el nombre para poder tener varios en el mismo directorio y eliminando la extensión para comprobar que no se ven afectados por el análisis.
+Tras ejecutar la aplicación sobre el directorio raíz del proyecto se comprueba que ésta funciona correctamente, ya que todos los ficheros con extensión \textit{.py} contenidos en los diferentes directorios y subdirectorios han sido corregidos y son idénticos al fichero inicial sin errores corregibles, mientras que los ficheros sin extensión \textit{.py} no se han visto modificados por la aplicación.
+
+\section{Análisis y correción de repositorios en GitHub y GitLab}
+\label{sec:tests_repositorios}
+
+Para poder comprobar que la aplicación al completo funciona correctamente se ha dejado de usar el script indicado en la sección~\ref{sec:tests_local} y se ha levantado la aplicación Django en local.
+Tras tener la aplicación Django funcionando correctamente, se ha creado un repositorio en GitHub que contiene un único fichero como el indicado en la primera prueba exitosa de la sección~\ref{sec:tests_local} y se ha introducido la URL de dicho repositorio en el formulario de la página principal de la aplicación.
+Una vez terminado el proceso, se comprueba que se ha realizado la Pull-Request y que ésta contiene un commit modificando el único fichero del repositorio que, en caso de realizarse el \textit{merge} de la Pull-Request con el repositorio, pasa a ser idéntico al fichero inicial sin los errores corregibles por la aplicación. También se comprueba que la Pull-Request realizada contiene en su descripción un breve mensaje con un enlace a la aplicación y a la documentación de la guía de estilo PEP8 y después el listado con los errores que han sido corregidos por la aplicación tal y como los muestra Pylint en su salida.
+
+En este proceso se recibe un mensaje de GitHub notificando que la autenticación mediante usuario y contraseña al usar la API va a ser deshabilitada próximamente, por lo que se modifica el método de autenticación para usar un token de acceso y se comprueba que el proceso de creación de la Pull-Request sigue funcionando correctamente.
+
+Tras esta corrección y la creación de la Pull-Request de manera exitosa, se realiza el mismo proceso utilizando el proyecto con múltiples directorios y ficheros que se ha usado en la segunda parte de la sección~\ref{sec:tests_local}.
+Al finalizar el proceso se observa que se ha realizado la creación de la Pull-Request de manera adecuada, modificando correctamente todos los ficheros con extensión \textit{.py} y dejando intactos los que no tienen ninguna extensión.
+Por último, se prueba a aceptar una de las Pull-Requests y a cancelar la otra y se comprueba que la aplicación realiza la consulta a la API de GitHub para obtener el estado de las Pull-Requests y lo actualiza correctamente en la base de datos.
+
+Estos dos mismos experimentos se repiten utilizando un repositorio alojado en el GitLab de la ETSIT de la URJC en lugar de GitHub y, como en el caso anterior, ambas pruebas concluyen de manera satisfactoria.
+
+\section{Aplicación desplegada en Heroku}
+\label{sec:tests_heroku}
+
+Como última prueba, se realiza el despliegue de la aplicación en Heroku y se repiten las pruebas utilizando repositorios con subdirectorios y múltiples ficheros alojados en GitHub y en el GitLab de la ETSIT de la URJC.
+Estas pruebas tienen el mismo resultado que al haber desplegado la aplicación Django en local, por lo que se puede validar el funcionamiento correcto de la aplicación completa ya desplegada en Heroku y siendo accesible desde Internet, finalizando así las pruebas y tests ejecutados sobre la aplicación.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -761,10 +791,134 @@ La salida de la ejecución de los tests unitarios desde el propio Django puede s
 
 \cleardoublepage
 \chapter{Resultados}
-%TODO
-En este capítulo se incluyen los resultados de tu trabajo fin de grado.
+\label{chap:resultados}
 
-Si es una herramienta de análisis lo que has realizado, aquí puedes poner ejemplos de haberla utilizado para que se vea su utilidad.
+Una vez terminada la fase de pruebas, se borra el contenido de la base de datos para no mezclar los datos de las pruebas con los datos reales y se procede a utilizar la aplicación con repositorios reales alojados en GitHub.
+Para ello se escogen algunos proyectos correspondientes a la práctica final de la asignatura Servicios y Aplicaciones Telemáticas realizadas por compañeros de la carrera y se buscan proyectos Python en GitHub que tengan actividad reciente.
+
+Al introducir el primero de estos proyectos, debido a su tamaño, el tiempo de análisis con Pylint es superior al de las pruebas realizadas previamente y se produce un \emph{timeout} ya que el servidor tarda más de treinta segundos en devolver una respuesta HTTP al cliente.
+
+Para solucionarlo se intenta cambiar el valor de dicho \emph{timeout}, pero tras revisar la documentación de Heroku se observa que no es posible modificarlo.
+Por lo tanto, se procede a programar el análisis con Pylint como una tarea asíncrona con el servidor comprobando periódicamente si dicha tarea ha finalizado o no.
+Dicha solución se aplica también para la tarea de corrección de los errores detectados, ya que puede provocar el mismo fallo.
+
+Tras realizar estos cambios se vuelve a introducir el repositorio que ha provocado el fallo y se comprueba que el análisis y la corrección se llevan a cabo de manera satisfactoria y que se permite que el tiempo de los mismos sea superior a treinta segundos sin provocar un \emph{timeout}.
+También se comprueba que la Pull-Request se ha generado correctamente y ha quedado abierta a la espera de que el propietario del repositorio la acepte o la cancele.
+
+Una vez realizados diez Pull-Requests sobre repositorios de proyectos reales, se procede a analizar cuáles son los errores más corregidos y más detectados por la aplicación.
+
+En la figura~\ref{fig:errores_detectados} se puede observar una gráfica en la que se representa el número de errores detectados por la aplicación para los diez más frecuentes en los repositorios analizados.
+Entre estos diez errores más frecuentes se encuentran dos de los que son corregibles por la aplicación: \textit{C0326: bad-whitespace} y \textit{C0303: trailing-whitespace}.
+El resto de errores se encuentran junto a su ID y su mensaje de error en la tabla~\ref{tabla:errores_detectados}.
+
+Entre los errores detectados por la aplicación, el más repetido es \textit{C0326: bad-whitespace}, que además es corregible, habiendo sido detectado un total de 2541 veces.
+Los dos siguientes errores también superan las mil repeticiones totales para los diez análisis realizados. Estos errores son \textit{C0103: invalid-name}, repetido 1465 veces y \textit{C0116: missing-function-docstring}, con 1146 detecciones.
+El resto de errores detectados se encuentran por debajo de las 600 repeticiones.
+Para los diez análisis realizados, se han detectado 108 errores distintos, de los 349 posibles, con un recuento total de 9566 detecciones.
+\newline
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        symbolic y coords={
+        	redefined-outer-name,
+        	missing-module-docstring,
+        	bad-continuation,
+        	trailing-whitespace,
+        	no-member,
+        	mixed-indentation,
+        	bad-indentation,
+        	missing-function-docstring,
+        	invalid-name,
+        	bad-whitespace
+        	},
+        xmin = 0,
+        xmax = 3000,
+        xlabel={Número de detecciones},
+        width=12cm,height=8cm,
+        ytick=data
+        ]
+        \addplot[xbar,fill=blue] coordinates {
+          (2541,bad-whitespace)
+          (1465,invalid-name)
+          (1146,missing-function-docstring)
+          (535,bad-indentation)
+          (450,mixed-indentation)
+          (345,no-member)
+          (280,trailing-whitespace)
+          (278,bad-continuation)
+          (248,missing-module-docstring)
+          (199,redefined-outer-name)
+        };
+      \end{axis}
+    \end{tikzpicture}
+  \caption{Cantidad de detecciones por error.}\label{fig:errores_detectados}
+\end{figure}
+\newpage
+\begin{table}[h]
+ \begin{center}
+  \begin{tabular}{ | l | c | c |}
+    \hline
+    \textbf{Error ID} & \textbf{Error Name} & \textbf{Message} \\ \hline
+    C0103 & invalid-name & \makecell[l]{\%s name "\%s" doesn't conform to \%s. Used when the\\name doesn't conform to naming rules associated\\to its type (constant, variable, class...).} \\ \hline
+    C0116 & missing-function-docstring & \makecell[l]{Missing function or method docstring. Used when a\\function or method has no docstring.Some special\\methods like \_\_init\_\_ do not require a docstring.} \\ \hline
+    W0311 & bad-indentation & \makecell[l]{Bad indentation. Found \%s \%s, expected \%s. Used\\when an unexpected number of indentation's\\tabulations or spaces has been found.} \\ \hline
+    W0312 & mixed-indentation & \makecell[l]{Found indentation with \%ss instead of \%ss. Used\\when there are some mixed tabs and spaces in a module.} \\ \hline
+    E1101 & no-member & \makecell[l]{\%s \%r has no \%r member\%s. Used when a variable\\is accessed for an unexistent member.} \\ \hline
+    C0330 & bad-continuation & \makecell[l]{Wrong \%s indentation\%s\%s.} \\ \hline
+    C0114 & missing-module-docstring & \makecell[l]{Missing module docstring. Used when a module\\has no docstring.Empty modules do not require a\\docstring.} \\ \hline
+    W0621 & redefined-outer-name & \makecell[l]{Redefining name \%r from outer scope (line \%s).\\Used when a variable's name hides a name defined\\in the outer scope.} \\ \hline
+  \end{tabular}
+  \label{tabla:errores_detectados}
+  \caption{Errores detectados por Pylint corregibles por la aplicación.}
+ \end{center}
+\end{table}
+
+En la figura~\ref{fig:errores_corregidos} se puede observar una gráfica en la que se representa el número correcciones que se han llevado a cabo para cada uno de los errores que son corregibles por la aplicación.
+
+Los 9 errores corregibles por la aplicación han sido detectados y solucionados al menos una vez durante los 10 análisis realizados.
+Los dos errores más corregidos son los que ya aparecían en la lista de errores más detectados, con 2541 repeticiones para \textit{C0326: bad-whitespace} y 280 para \textit{C0303: trailing-whitespace}.
+Para los siguientes errores corregidos, \textit{C0321: multiple-statements} se ha repetido 190 veces, \textit{C0304: missing-final-newline} ha tenido 113 apariciones y \textit{W0611: unused-import} ha sido corregido 108 veces.
+Con menos de 100 correcciones se encuentran \textit{C0411: wrong-import-order}, con 84, y \textit{C0413: wrong-import-position}, que ha sido corregido 64 veces.
+Mientras que los dos errores con menos correcciones son \textit{W0404: reimported} y \textit{C0410: multiple-imports} con 9 y 7 correcciones cada uno respectivamente
+Estos 9 errores suman un total de 3396 correcciones para los 10 análisis que se han llevado a cabo.
+\newline
+\begin{figure}[h]
+  \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        symbolic y coords={
+        	multiple-imports,
+        	reimported,
+        	wrong-import-position,
+        	wrong-import-order,
+        	unused-import,
+        	missing-final-newline,
+        	multiple-statements,
+        	trailing-whitespace,
+        	bad-whitespace
+        	},
+        xmin = 0,
+        xmax = 3000,
+        xlabel={Número de correcciones},
+        width=12cm,height=7cm,
+        ytick=data
+        ]
+        \addplot[xbar,fill=blue] coordinates {
+          (2541,bad-whitespace)
+          (280,trailing-whitespace)
+          (190,multiple-statements)
+          (113,missing-final-newline)
+          (108,unused-import)
+          (84,wrong-import-order)
+          (64,wrong-import-position)
+          (9,reimported)
+          (7,multiple-imports)
+        };
+      \end{axis}
+    \end{tikzpicture}
+  \caption{Cantidad de correcciones por error.}\label{fig:errores_corregidos}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -775,52 +929,64 @@ Si es una herramienta de análisis lo que has realizado, aquí puedes poner ejem
 \cleardoublepage
 \chapter{Conclusiones}
 \label{chap:conclusiones}
-%TODO
 
 \section{Consecución de objetivos}
 \label{sec:consecucion-objetivos}
 
-Esta sección es la sección espejo de las dos primeras del capítulo de objetivos, donde se planteaba el objetivo general y se elaboraban los específicos.
+Como se ha indicado en la sección~\ref{sec:objetivo-general}, el objetivo principal del proyecto era desarrollar una aplicación que analizase mediante Pylint repositorios de GitHub con código Python y corrigiera algunos de los errores encontrados en dicho código para cumplir con la guía de estilo PEP8 realizando finalmente Pull-Requests para sugerir al propietario del repositorio las modificaciones que se han llevado a cabo.
+Este objetivo principal se ha cumplido en su totalidad, la aplicación es capaz de analizar código Python almacenado en GitHub y corrige los 9 errores indicados en la tabla~\ref{tabla:errores} para, finalmente, subir estas modificaciones a GitHub mediante el uso de Pull-Requests.
 
-Es aquí donde hay que debatir qué se ha conseguido y qué no. 
-Cuando algo no se ha conseguido, se ha de justificar, en términos de qué problemas se han encontrado y qué medidas se han tomado para mitigar esos problemas.
-
-Y si has llegado hasta aquí, siempre es bueno pasarle el corrector ortográfico, que las erratas quedan fatal en la memoria final.
-Para eso, en Linux tenemos aspell, que se ejecuta de la siguiente manera desde la línea de \emph{shell}:
-
-\begin{verbatim}
-  aspell --lang=es_ES -c memoria.tex
-\end{verbatim}
+Respecto a los objetivos específicos, el resultado para cada uno de ellos ha sido el siguiente:
+\begin{itemize}
+	\item \textbf{Trabajar con proyectos reales}: Una vez finalizado el desarrollo de la aplicación, se ha podido probar su funcionamiento con proyectos reales.
+	\item \textbf{Aplicación web}: La aplicación ha sido desarrollada como una aplicación web mediante el uso de Django.
+	\item \textbf{Accesibilidad desde Internet}: Se ha logrado la accesibilidad desde Internet mediante el despliegue de la aplicación en Heroku.
+	Este despliegue tiene algunas limitaciones causadas por el uso de la versión gratuita de Heroku.
+	La principal limitación se encuentra en la base de datos que proporciona la plataforma, ya que no se permite que ésta contenga más de diez mil filas.
+	Otra limitación provocada por la versión gratuita de Heroku es la entrada en reposo de la aplicación pasado un determinado tiempo de inactividad.
+	Esto causa que si un usuario accede a la aplicación cuando se encuentra en reposo, deberá esperar unos segundos mientras la aplicación arranca para poder hacer uso de la misma.
+	\item \textbf{Compatibilidad con el servidor GitLab de la ETSIT}: La aplicación es totalmente compatible con el servidor GitLab de la ETSIT y permite realizar sobre sus repositorios las mismas acciones que sobre los repositorios de GitHub.
+	\item \textbf{Análisis de aceptación de las Pull-Requests}: La aplicación comprueba el estado de las Pull-Requests que se han realizado y lo actualiza en la base de datos para mostrarlo correctamente en las gráficas.
+\end{itemize}
 
 \section{Aplicación de lo aprendido}
 \label{sec:aplicacion}
 
-Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y comentar en un párrafo los conocimientos y habilidades puestos en práctica.
+En el desarrollo de este proyecto se han aplicado conocimientos adquiridos en las siguientes asignaturas:
 
-\begin{enumerate}
-  \item a
-  \item b
-\end{enumerate}
-
+\begin{itemize}
+  \item \textbf{Fundamentos de la Programación}: Introducción a la programación, necesaria para poder entender las asignaturas de programación que se estudian más adelante.
+  \item \textbf{Arquitectura de Redes de Ordenadores}: Esta asignatura introduce por primera vez los protocolos usados en las redes, como el protocolo HTTP, necesario para el funcionamiento de las aplicaciones web como la desarrollada en este proyecto.
+  \item \textbf{Programación de Sistemas de Telecomunicación}: Se profundiza en el uso de protocolos, la programación de tareas asíncronas y se presenta la arquitectura cliente-servidor en la que se basa la aplicación.
+  \item \textbf{Sistemas Operativos}: Asignatura que, entre otras cosas, explica el uso básico de Linux, necesario para el tratamiento de ficheros y ejecución de comandos del sistema operativo que realiza la aplicación.
+  \item \textbf{Servicios y Aplicaciones Telemáticas}: Asignatura base para el desarrollo de este proyecto. En ella se tiene el primer contacto con git, Python, HTML, CSS y Django, tecnologías en las que se basa la aplicación desarrollada. También se presenta la guía de estilo PEP8.
+  \item \textbf{Ingeniería de Sistemas de Información}: Presenta el uso de las bases de datos, el lenguaje SQL, los tests unitarios y el despliegue de aplicaciones en Heroku. También profundiza en el uso de git.
+  \item \textbf{Desarrollo de Aplicaciones Telemáticas}: Se introduce JavaScript y jQuery y se muestra qué es una API y cómo comunicarse con ella.
+\end{itemize}
 
 \section{Lecciones aprendidas}
 \label{sec:lecciones_aprendidas}
 
-Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+De lo aprendido durante la elaboración del Trabajo de Fin de Grado se podría destacar lo siguiente:
 
-\begin{enumerate}
-  \item Aquí viene uno.
-  \item Aquí viene otro.
-\end{enumerate}
-
+\begin{itemize}
+  \item La profundización en Python y Django, que ha permitido añadir conocimientos a lo aprendido previamente durante las asigntaturas de la carrera.
+  \item La posibilidad de realizar Pull-Requests en GitHub y así poder sugerir modificaciones y colaborar en proyectos de otros usuarios.
+  \item GitLab. Desconocía la existencia de plataformas de almacenamiento de repositorios además de GitHub y que además permitía la creación de servidores privados en los que alojar los proyectos.
+  \item Cómo funcionan las APIs de GitHub y GitLab y su sistema de autenticación mediante token.
+\end{itemize}
 
 \section{Trabajos futuros}
 \label{sec:trabajos_futuros}
 
-Ningún proyecto ni software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
+Aunque cumpla los objetivos propuestos, este proyecto tiene la posibilidad de ser mejorado y ampliado en el futuro, algunas de estas posibles mejoras son las siguientes:
 
-Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
-
+\begin{itemize}
+  \item Añadir más errores corregibles por la aplicación. 
+  \item Mejorar la velocidad de corrección mediante la posibilidad de corregir los ficheros en paralelo en lugar de secuencialmente como se realiza ahora.
+  \item Añadir compatiblidad con el servidor público y global de Gitlab además de con otras plataformas de almacenamiento de repositorios como Bitbucket.
+  \item Despliegue en una plataforma sin las limitaciones producidas por Heroku actualmente.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

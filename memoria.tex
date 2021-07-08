@@ -161,10 +161,10 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
-El objetivo de este Trabajo de Fin de Grado es analizar proyectos en lenguaje Python para evaluar el nivel de cumplimiento con la guía de estilo PEP8 y corregirlos para aumentar dicho nivel de cumplimiento.
+El objetivo de este Trabajo de Fin de Grado es analizar proyectos realizados en lenguaje Python para evaluar el nivel de cumplimiento con la guía de estilo PEP8 y corregirlos para aumentar éste.
 
 El proyecto se basa en el modelo de arquitectura cliente-servidor y se ha desarrollado como una aplicación web accesible desde Internet que permite a cualquier usuario evaluar el nivel de cumplimiento de sus proyectos con PEP8 mediante el análisis de repositorios alojados en GitHub.
-Algunos de los errores observados serán corregibles por la aplicación y los cambios serán subidos al repositorio de GitHub mediante el uso de Pull-Requests.
+Algunos de los errores observados son corregibles por la aplicación y los cambios se suben al repositorio de GitHub mediante el uso de Pull-Requests.
 
 La aplicación ha sido desarrollada en lenguaje Python y se han usado tecnologías como Django, HTML, CSS, JavaScript o PostgreSQL.
 
@@ -177,7 +177,7 @@ La aplicación ha sido desarrollada en lenguaje Python y se han usado tecnologí
 This Final Degree Project aims to analyze projects developed in Python in order to evaluate their compliace level with the style guide for Python known as PEP8 and correct their code to increase their compliance level.
 
 This project is based on the client-server model and has been developed as a web application accesible from the Internet that allows any user to evaluate the compliance level of their projects with PEP8 by analyzing repositories hosted on GitHub.
-Some of the detected errors will be correctables by the application and the changes will be committed and uploaded to the GitHub repository using Pull-Requests.
+Some of the detected errors are correctables by the application and the changes are committed and uploaded to the GitHub repository using Pull-Requests.
 
 The application has been developed in Python language and technologies such as Django, HTML, CSS, JavaScript or PostgreSQL have been used.
 
@@ -219,7 +219,7 @@ Para ello se desarrollará una aplicación que analice dicho código y posterior
 La aplicación será de tipo web, desarrollada con Django y haciendo uso de tecnologías como Python, HTML, CSS o JavaScript, y será accesible desde Internet para que cualquier usuario pueda acceder a la aplicación y realizar el análisis y la corrección sobre los repositorios que quiera, por lo que se realizará un despliegue de la aplicación en Heroku.
 
 El análisis se ejecutará mediante la herramienta Pylint realizando un escaneo de todos los ficheros con extensión \textit{.py} y obteniendo la lista de errores indicados por Pylint.
-Algunos de estos errores serán corregibles por la aplicación, de manera que se pueda aumentar el nivel de cumplimiento indicado anteriormete.
+Algunos de estos errores serán corregibles por la aplicación, de manera que se pueda aumentar el nivel de cumplimiento indicado anteriormente.
 
 El código analizado por la aplicación estará almacenado en plataformas de almacenamiento de repositorios, como GitHub o GitLab, y las modificaciones realizadas serán subidas automáticamente al repositorio correspondiente mediante el uso de Pull-Requests.
 
@@ -374,7 +374,7 @@ Los informes mostrados son los siguientes:
 \subsubsection{Calificación}
 
 Tercera y última sección de la salida de Pylint.
-Muestra una calificación global, siendo 10.0 el máximo, para el código analizado y lo compara con la calificación obtenida en la ejecución previa del añalisis.
+Muestra una calificación global, siendo 10.0 el máximo, para el código analizado y lo compara con la calificación obtenida en la ejecución previa del análisis.
 Al igual que los informes, puede ser desactivado mediante un argumento en el momento de ejecutar el análisis.
 
 \section{Django} 
@@ -562,7 +562,7 @@ En la figura~\ref{fig:directorios} se pueden observar los directorios y ficheros
 	En él se indican, mediante el uso de expresiones regulares, los recursos que son accesibles en la aplicación y se asigna a cada uno una función definida en el fichero views.py. Junto a views.py, pertenece a la parte \textit{Views} definida en el modelo de arquitectura MVT.
 	\item \textbf{pylint\_errors.py}: Fichero que contiene las funciones encargadas de corregir los errores analizados por Pylint.
 	\item \textbf{tests.py}: Fichero que contiene los tests unitarios desarrollados para comprobar que las funciones de la aplicación se comportan correctamente.
-	\item \textbf{template}: Directorio que contiene las plantillas HTML que van a formar el cuerpo de la respuesta HTTP que se da al cliente. En su interior se encuentran los directorios \textit{es}, que contiene las plantillas en castellano, \textit{en}, que contienen las plantillas en inglés e \textit{images}, que contiene las imágenes utilizadas por las plantillas HTML. Tambien se encuentra el fichero \textit{themes.css}, que actúa como hoja de estilo para toda la aplicación. Los ficheros y directorios de su interior confirman la parte \textit{Templates} del modelo de arquitectura MVT.
+	\item \textbf{template}: Directorio que contiene las plantillas HTML que van a formar el cuerpo de la respuesta HTTP que se da al cliente. En su interior se encuentran los directorios \textit{es}, que contiene las plantillas en castellano, \textit{en}, que contienen las plantillas en inglés e \textit{images}, que contiene las imágenes utilizadas por las plantillas HTML. También se encuentra el fichero \textit{themes.css}, que actúa como hoja de estilo para toda la aplicación. Los ficheros y directorios de su interior confirman la parte \textit{Templates} del modelo de arquitectura MVT.
 \end{itemize}
 
 \begin{figure}
@@ -718,7 +718,7 @@ Para esta aplicación se especifica que se deben realizar las migraciones del mo
 El fichero \textit{requirements.txt} hace que Heroku identifique automáticamente la aplicación como una aplicación desarrollada en Python y en su interior se definen las dependencias, incluyendo la versión, que deben ser instaladas antes del arranque de la aplicación en Heroku.
 Para esta aplicación \textit{requirements.txt} contiene paquetes Python como \textit{Django}, \textit{Pylint}, o \textit{requests}, entre otros.
 
-Además, para que Django funcione correctamente al desplegarse en Heroku, hay que realizar cambios dentro del código del proyeccto.
+Además, para que Django funcione correctamente al desplegarse en Heroku, hay que realizar cambios dentro del código del proyecto.
 El fichero \textit{settings.py} se modifica para que Django utilice la base de datos PostgreSQL proporcionada por Heroku y se modifica el fichero \textit{views.py} para que haga uso de las variables de configuración de Heroku, que contendrán datos como los token de GitHub y Gitlab.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -763,7 +763,7 @@ Después de comprobar que el análisis y la corrección sobre un único fichero 
 Para ello se han creado copias del fichero inicial que contenía los errores y se han distribuido en diferentes directorios dentro de un mismo proyecto realizando cambios en el nombre para poder tener varios en el mismo directorio y eliminando la extensión para comprobar que no se ven afectados por el análisis.
 Tras ejecutar la aplicación sobre el directorio raíz del proyecto se comprueba que ésta funciona correctamente, ya que todos los ficheros con extensión \textit{.py} contenidos en los diferentes directorios y subdirectorios han sido corregidos y son idénticos al fichero inicial sin errores corregibles, mientras que los ficheros sin extensión \textit{.py} no se han visto modificados por la aplicación.
 
-\section{Análisis y correción de repositorios en GitHub y GitLab}
+\section{Análisis y corrección de repositorios en GitHub y GitLab}
 \label{sec:tests_repositorios}
 
 Para poder comprobar que la aplicación al completo funciona correctamente se ha dejado de usar el script indicado en la sección~\ref{sec:tests_local} y se ha levantado la aplicación Django en local.
@@ -970,7 +970,7 @@ En el desarrollo de este proyecto se han aplicado conocimientos adquiridos en la
 De lo aprendido durante la elaboración del Trabajo de Fin de Grado se podría destacar lo siguiente:
 
 \begin{itemize}
-  \item La profundización en Python y Django, que ha permitido añadir conocimientos a lo aprendido previamente durante las asigntaturas de la carrera.
+  \item La profundización en Python y Django, que ha permitido añadir conocimientos a lo aprendido previamente durante las asignaturas de la carrera.
   \item La posibilidad de realizar Pull-Requests en GitHub y así poder sugerir modificaciones y colaborar en proyectos de otros usuarios.
   \item GitLab. Desconocía la existencia de plataformas de almacenamiento de repositorios además de GitHub y que además permitía la creación de servidores privados en los que alojar los proyectos.
   \item Cómo funcionan las APIs de GitHub y GitLab y su sistema de autenticación mediante token.
@@ -984,7 +984,7 @@ Aunque cumpla los objetivos propuestos, este proyecto tiene la posibilidad de se
 \begin{itemize}
   \item Añadir más errores corregibles por la aplicación. 
   \item Mejorar la velocidad de corrección mediante la posibilidad de corregir los ficheros en paralelo en lugar de secuencialmente como se realiza ahora.
-  \item Añadir compatiblidad con el servidor público y global de Gitlab además de con otras plataformas de almacenamiento de repositorios como Bitbucket.
+  \item Añadir compatibilidad con el servidor público y global de Gitlab además de con otras plataformas de almacenamiento de repositorios como Bitbucket.
   \item Despliegue en una plataforma sin las limitaciones producidas por Heroku actualmente.
 \end{itemize}
 
