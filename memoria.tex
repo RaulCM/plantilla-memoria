@@ -139,9 +139,8 @@ Fuenlabrada, a \qquad$\;\,$ de julio de 2021
 \chapter*{}
 \pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
 \begin{flushright}
-%TODO
-\textit{Dedicado a \\
-mi familia / mi abuelo / mi abuela}
+\textit{``Travesura realizada''\\
+Fred y George Weasley}
 \end{flushright}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1004,6 +1003,8 @@ Aunque cumpla los objetivos propuestos, este proyecto tiene la posibilidad de se
 
 \begin{itemize}
   \item Añadir más errores corregibles por la aplicación. 
+  \item Permitir seleccionar qué errores, de los que puede corregir la aplicación, van a ser corregidos tras el análisis.
+  \item Permitir seleccionar sobre qué ficheros del proyecto se va a realizar la corrección.
   \item Mejorar la velocidad de corrección mediante la posibilidad de corregir los ficheros en paralelo en lugar de secuencialmente como se realiza ahora.
   \item Añadir compatibilidad con el servidor público y global de Gitlab además de con otras plataformas de almacenamiento de repositorios como Bitbucket.
   \item Despliegue en una plataforma sin las limitaciones producidas por Heroku actualmente.
@@ -1018,11 +1019,61 @@ Aunque cumpla los objetivos propuestos, este proyecto tiene la posibilidad de se
 \appendix
 \chapter{Manual de usuario}
 \label{app:manual}
-%TODO
-Esto es un apéndice.
-Si has creado una aplicación, siempre viene bien tener un manual de usuario.
-Pues ponlo aquí.
 
+Para poder hacer uso de la aplicación hay que acceder a la url de la misma:
+
+\url{https://pep-analyzer.herokuapp.com}
+
+Tras acceder a la aplicación web se mostrará la página principal representada en la figura~\ref{fig:paso1}.
+En esta página principal se puede observar un botón arriba a la izquierda que despliega el menú lateral, los selectores de idiomas arriba a la derecha y un formulario y un botón en el centro.
+
+Para realizar el análisis de un repositorio, habrá que introducir la url de dicho repositorio en el formulario de la página principal y pulsar el botón ``Añadir''.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/paso1.png}
+  \caption{Página principal de la aplicación.}\label{fig:paso1}
+\end{figure}
+\newpage
+Tras introducir la url del repositorio, se mostrará la página de la figura~\ref{fig:paso2}, informando sobre los datos del repositorio introducido y proporcionando un botón ``Pylint'' que procederá a realizar el análisis del código después de ser pulsado.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/paso2.png}
+  \caption{Información del repositorio introducido.}\label{fig:paso2}
+\end{figure}
+
+Una vez comenzado el análisis, se muestra la página de la figura~\ref{fig:paso3} informando de que éste está llevándose a cabo.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/paso3.png}
+  \caption{Análisis con Pylint en proceso.}\label{fig:paso3}
+\end{figure}
+\newpage
+
+Esta página se recargará por sí sola mientras el análisis se está realizando y una vez finalice, redirigirá al usuario a la página representada en la figura~\ref{fig:paso4}.
+
+En esta página se muestran los errores que Pylint ha detectado en el código analizado, indicando en cada mensaje el fichero, la línea y la columna en la que se encuentra dicho error junto al código del mismo y un mensaje informativo.
+Mediante la selección de las pestañas, la página permite visualizar todos los errores detectados por Pylint o realizar un filtrado para mostrar únicamente los que son corregibles por la aplicación.
+Pulsar el botón ``Corregir'' dará comienzo a la corrección del código.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/paso4.png}
+  \caption{Errores detectados por Pylint.}\label{fig:paso4}
+\end{figure}
+
+Mientras se lleva a cabo la corrección, el usuario visualizará la página mostrada en la figura~\ref{fig:paso5}, con un mensaje informativo que estará activo hasta su finación.
+\newpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/paso5.png}
+  \caption{Corrección en proceso.}\label{fig:paso5}
+\end{figure}
+Una vez finalizada la corrección, se redirigirá al usuario a la página representada en la figura~\ref{fig:paso6}, donde se muestra un mensaje informando de que la Pull-Request se ha realizado y la información del repositorio introducido junto a un enlace a la Pull-Request.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm, keepaspectratio]{img/paso6.png}
+  \caption{Errores detectados por Pylint.}\label{fig:paso6}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAFIA %
